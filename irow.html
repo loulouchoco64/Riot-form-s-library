@@ -1,0 +1,9 @@
+<irow>
+	<div class="row">
+		<template each={ field in props.field.desc }>
+			<div class="col">
+				<template is={'i'+field.type} field={field} attr={props.attr}></template>
+			</div>
+		</template>
+	</div>
+</irow>

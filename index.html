@@ -2,6 +2,7 @@
 <html>
   <head>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -19,7 +20,28 @@
 						value: 'First item',
 						label: 'Id de l\'ambulance',
 						icon: 'fas fa-ambulance',
-						right_icon: 'fas fa-joint'
+						rightIcon: 'fas fa-joint'
+					},
+					{
+						id: 'i0',
+						type: 'row',
+						desc: [{
+								id: 'i11',
+								type: 'text',
+								size: 10,
+								value: 'First item',
+								label: 'Id de l\'ambulance',
+								icon: 'fas fa-ambulance',
+								rightIcon: 'fas fa-joint'
+							},
+							{
+								id: 'i12',
+								type: 'password',
+								size: 10,
+								value: 'Second item',
+								label: 'Mot de passe'
+							},
+						]
 					},
 					{
 						id: 'i2',
@@ -34,7 +56,7 @@
 						size: 10,
 						value: 'Third item',
 						label: 'Adresse',
-						right_icon: 'fas fa-joint'
+						rightIcon: 'fas fa-joint'
 					},
 					{
 						id: 'i4',
@@ -105,11 +127,26 @@
 
 
 				]
+			},
+			form2: {
+				attr: {
+					lang: 'fr',
+					langs: ['fr', 'en']
+				},
+				desc: [{
+					id: 'i1',
+					type: 'text',
+					size: 10,
+					value: 'First item',
+					label: 'Id de l\'ambulance',
+					icon: 'fas fa-ambulance',
+					rightIcon: 'fas fa-joint'
+				}]
 			}
 		}
 	</script>
 
-	<formr id="form1"></formr>
+	<formr id="form2"></formr>
 
 	<script src="https://kit.fontawesome.com/14194217cb.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/riot@4/riot+compiler.min.js"></script>
@@ -121,9 +158,10 @@
 	<script type="riot" src="icheckbox.html"></script>
 	<script type="riot" src="ihr.html"></script>
 	<script type="riot" src="iradio.html"></script>
-	<script type="riot" src="jprepicon.html"></script>
+	<script type="riot" src="jicon.html"></script>
 	<script type="riot" src="iselect.html"></script>
 	<script type="riot" src="imulti_select.html"></script>
+	<script type="riot" src="irow.html"></script>
 	<script type="text/javascript">
 		riot.install(function(component) {
 			component.i18n = function(id) {

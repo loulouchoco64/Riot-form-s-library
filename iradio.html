@@ -1,11 +1,13 @@
 <iradio>
+	<div class="form-group">
 
-	<template each={ option in props.field.options }>
-		<div class="custom-control custom-radio">
-			<input type="radio" id={option.id} name={props.field.name} class="custom-control-input">
-			<label class="custom-control-label" for={option.id}>{option.label}</label>
-		</div>
-	</template>
+		<template each={ option in props.field.options }>
+			<div class="custom-control custom-radio">
+				<input type="radio" id={option.id} name={props.field.name} class="custom-control-input">
+				<label class="custom-control-label" for={option.id}>{option.label}</label>
+			</div>
+		</template>
+	</div>
 
 
 

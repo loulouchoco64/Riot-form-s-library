@@ -1,11 +1,13 @@
 <itext>
-	<div>
+	
 		<jlabel label={props.field.label}></jlabel>
-	</div>
-	<div class="input-group mb-3">
-		<jprepicon if={props.field.icon} icon={props.field.icon}></jprepicon>
-		<input type="text" class="form-control" id={props.field.id} placeholder="text" size={props.field.size} value={props.field.value}>
-		<jprepicon if={props.field.right_icon} icon={props.field.right_icon}></jprepicon>
-	</div>
+
+		<div class="input-group mb-3">
+			<jicon icon={props.field.icon}></jicon>
+			<input type="text" class="form-control" id={props.field.id} placeholder="text" size={props.field.size} value={props.field.value}>
+			<jicon rightIcon={props.field.rightIcon}></jicon>
+			
+		</div>
+	
 
 </itext>
