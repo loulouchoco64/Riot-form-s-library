@@ -7,99 +7,105 @@
 <body>
 	<script>
 		var fields = {
-			form1: [{
-					id: 'i1',
-					type: 'text',
-					size: 10,
-					value: 'First item',
-					label: 'Id de l\'ambulance',
-					icon: 'fas fa-ambulance',
-					right_icon: 'fas fa-joint'
+			form1: {
+				attr: {
+					lang: 'fr',
+					langs: ['fr', 'en']
 				},
-				{
-					id: 'i2',
-					type: 'password',
-					size: 10,
-					value: 'Second item',
-					label: 'Mot de passe'
-				},
-				{
-					id: 'i3',
-					type: 'text',
-					size: 10,
-					value: 'Third item',
-					label: 'Adresse',
-					right_icon: 'fas fa-joint'
-				},
-				{
-					id: 'i4',
-					type: 'button',
-					size: 23,
-					title: 'Fourth item',
-					icon: 'fas fa-restroom'
-				},
-				{
-					name: 'radioTest',
-					type: 'radio',
-					options: [{
-							label: 'chien',
-							id: 'dog'
-						},
-						{
-							label: 'chat',
-							id: 'cat'
-						}
-					]
-				},
-				{
-					id: 'i9',
-					type: 'hr',
-					title: 'Séparation'
-				},
-				{
-					id: 'i7',
-					type: 'checkbox',
-					label: 'majeur',
-					value: 'majeur'
-				},
-				{
-					id: 'i8',
-					type: 'checkbox',
-					label: 'garcon',
-					value: 'false'
-				},
-				{
-					id: 'i9',
-					type: 'select',
-					label: 'Genre',
-					options: [{
-							label: 'Garcon',
-							value: 'boy'
-						},
-						{
-							label: 'Fille',
-							value: 'girl'
-						}
-					]
-				},
-				{
-					id: 'i10',
-					type: 'multi_select',
-					label: 'Musique',
-					options: [{
-							label: 'Garcon',
-							value: 'boy'
-						},
-						{
-							label: 'Fille',
-							value: 'girl'
-						}
-					]
-				}
+				desc: [{
+						id: 'i1',
+						type: 'text',
+						size: 10,
+						value: 'First item',
+						label: 'Id de l\'ambulance',
+						icon: 'fas fa-ambulance',
+						right_icon: 'fas fa-joint'
+					},
+					{
+						id: 'i2',
+						type: 'password',
+						size: 10,
+						value: 'Second item',
+						label: 'Mot de passe'
+					},
+					{
+						id: 'i3',
+						type: 'text',
+						size: 10,
+						value: 'Third item',
+						label: 'Adresse',
+						right_icon: 'fas fa-joint'
+					},
+					{
+						id: 'i4',
+						type: 'button',
+						size: 23,
+						title: 'Fourth item',
+						icon: 'fas fa-restroom'
+					},
+					{
+						name: 'radioTest',
+						type: 'radio',
+						options: [{
+								label: 'chien',
+								id: 'dog'
+							},
+							{
+								label: 'chat',
+								id: 'cat'
+							}
+						]
+					},
+					{
+						id: 'i9',
+						type: 'hr',
+						title: 'Séparation'
+					},
+					{
+						id: 'i7',
+						type: 'checkbox',
+						label: 'majeur',
+						value: 'majeur'
+					},
+					{
+						id: 'i8',
+						type: 'checkbox',
+						label: 'garcon',
+						value: 'false'
+					},
+					{
+						id: 'i9',
+						type: 'select',
+						label: 'Genre',
+						options: [{
+								label: 'Garcon',
+								value: 'boy'
+							},
+							{
+								label: 'Fille',
+								value: 'girl'
+							}
+						]
+					},
+					{
+						id: 'i10',
+						type: 'multi_select',
+						label: 'Musique',
+						options: [{
+								label: 'Garcon',
+								value: 'boy'
+							},
+							{
+								label: 'Fille',
+								value: 'girl'
+							}
+						]
+					}
 
 
 
-			]
+				]
+			}
 		}
 	</script>
 
@@ -120,20 +126,20 @@
 	<script type="riot" src="imulti_select.html"></script>
 	<script type="text/javascript">
 		riot.install(function(component) {
-				component.i18n = function(id) {
-					return id
-				}
+			component.i18n = function(id) {
+				return id
+			}
+		})
+
+
+
+
+
+		riot.compile().then(() => {
+			riot.mount('formr', {
+
 			})
-
-
-
-
-
-			riot.compile().then(() => {
-				riot.mount('formr', {
-
-				})
-			})
+		})
 	</script>
 
 </body></html>
