@@ -1,0 +1,13 @@
+<iselect>
+	<jlabel name={props.field.label}></jlabel>
+	<div>
+		<select class="form-control" id={props.field.id}>
+			<template  each={option in props.field.options}>
+				<option value={option.value}>
+					{option.label}
+				</option>
+			</template>
+
+		</select>
+	</div>
+</iselect>

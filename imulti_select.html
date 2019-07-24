@@ -1,0 +1,13 @@
+<imulti_select>
+	<div>
+		<jlabel name={props.field.label}></jlabel>
+		<select multiple class="form-control" id={props.field.id}>
+			<template each={option in props.field.options}>
+				<option value={option.value}>
+					{option.label}
+				</option>
+			</template>
+
+		</select>
+	</div>
+</imulti_select>

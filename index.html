@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+  <head>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+	<script>
+		var fields = {
+			form1: [{
+					id: 'i1',
+					type: 'text',
+					size: 10,
+					value: 'First item',
+					label: 'Id de l\'ambulance',
+					icon: 'fas fa-ambulance',
+					right_icon: 'fas fa-joint'
+				},
+				{
+					id: 'i2',
+					type: 'password',
+					size: 10,
+					value: 'Second item',
+					label: 'Mot de passe'
+				},
+				{
+					id: 'i3',
+					type: 'text',
+					size: 10,
+					value: 'Third item',
+					label: 'Adresse',
+					right_icon: 'fas fa-joint'
+				},
+				{
+					id: 'i4',
+					type: 'button',
+					size: 23,
+					title: 'Fourth item',
+					icon: 'fas fa-restroom'
+				},
+				{
+					name: 'radioTest',
+					type: 'radio',
+					options: [{
+							label: 'chien',
+							id: 'dog'
+						},
+						{
+							label: 'chat',
+							id: 'cat'
+						}
+					]
+				},
+				{
+					id: 'i9',
+					type: 'hr',
+					title: 'Séparation'
+				},
+				{
+					id: 'i7',
+					type: 'checkbox',
+					label: 'majeur',
+					value: 'majeur'
+				},
+				{
+					id: 'i8',
+					type: 'checkbox',
+					label: 'garcon',
+					value: 'false'
+				},
+				{
+					id: 'i9',
+					type: 'select',
+					label: 'Genre',
+					options: [{
+							label: 'Garcon',
+							value: 'boy'
+						},
+						{
+							label: 'Fille',
+							value: 'girl'
+						}
+					]
+				},
+				{
+					id: 'i10',
+					type: 'multi_select',
+					label: 'Musique',
+					options: [{
+							label: 'Garcon',
+							value: 'boy'
+						},
+						{
+							label: 'Fille',
+							value: 'girl'
+						}
+					]
+				}
+
+
+
+			]
+		}
+	</script>
+
+	<formr id="form1"></formr>
+
+	<script src="https://kit.fontawesome.com/14194217cb.js"></script>
+	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/riot@4/riot+compiler.min.js"></script>
+	<script type="riot" src="formr.html"></script>
+	<script type="riot" src="itext.html"></script>
+	<script type="riot" src="ipassword.html"></script>
+	<script type="riot" src="ibutton.html"></script>
+	<script type="riot" src="jlabel.html"></script>
+	<script type="riot" src="icheckbox.html"></script>
+	<script type="riot" src="ihr.html"></script>
+	<script type="riot" src="iradio.html"></script>
+	<script type="riot" src="jprepicon.html"></script>
+	<script type="riot" src="iselect.html"></script>
+	<script type="riot" src="imulti_select.html"></script>
+	<script type="text/javascript">
+		riot.install(function(component) {
+				component.i18n = function(id) {
+					return id
+				}
+			})
+
+
+
+
+
+			riot.compile().then(() => {
+				riot.mount('formr', {
+
+				})
+			})
+	</script>
+
+</body></html>
