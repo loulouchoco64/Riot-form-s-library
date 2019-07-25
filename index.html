@@ -140,7 +140,8 @@
 					value: 'First item',
 					label: 'Id de l\'ambulance',
 					icon: 'fas fa-ambulance',
-					rightIcon: 'fas fa-joint'
+					rightIcon: 'fas fa-joint',
+					multilang: true
 				}]
 			}
 		}
@@ -165,8 +166,11 @@
 	<script type="text/javascript">
 		riot.install(function(component) {
 			component.i18n = function(id) {
-				return id
-			}
+					return id
+				}
+				component.langName = function(id) {
+					return id
+				}
 		})
 
 

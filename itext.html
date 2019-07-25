@@ -1,13 +1,32 @@
 <itext>
-	
-		<jlabel label={props.field.label}></jlabel>
 
-		<div class="input-group mb-3">
-			<jicon icon={props.field.icon}></jicon>
-			<input type="text" class="form-control" id={props.field.id} placeholder="text" size={props.field.size} value={props.field.value}>
-			<jicon rightIcon={props.field.rightIcon}></jicon>
-			
-		</div>
+
+	<label>{props.field.label}</label>
+	<template each={lang in props.attr.langs} >
+		<button  type="button" class="btn {lang==state.currentLang?'btn-primary':'btn-danger'} btn-sm ml-1" idLang={lang} onclick={selectLang} >{langName(lang)}</button>
+	</template>
 	
+	
+	
+	<div each={lang in props.attr.langs} class="input-group mb-3 {lang==state.currentLang?'':'hide'}">
+		<jicon icon={props.field.icon}></jicon>
+		<input type="text" class="form-control " id={props.field.id + '.'+lang} placeholder="text" size={props.field.size} value={props.field.value}>
+		<jicon rightIcon={props.field.rightIcon}></jicon>
+
+	</div>
+
+
+	<script>
+		export default {
+			onBeforeMount() {
+				this.state.currentLang=this.props.attr.langs[0]
+			},
+			selectLang(ev){
+				this.state.currentLang=ev.target.attributes.idLang.value
+				this.update()
+			}
+		}
+
+	</script>
 
 </itext>
