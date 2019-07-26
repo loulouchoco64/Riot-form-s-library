@@ -1,6 +1,6 @@
 <jicon>
 	<div if={props.icon} class="h-100 input-group-prepend">
-		<span  class="input-group-text" id="basic-addon1"><i class={props.icon}></i>
+		<span  class="input-group-text" id="basic-addon1"><i class={selectIcon(props.field)}></i>
 		</span>
 	</div>
 	<div if={props.rightIcon} class="h-100 input-group-append">
@@ -8,3 +8,4 @@
 		</span>
 	</div>
 </jicon>
+

@@ -14,13 +14,25 @@
 					langs: ['fr', 'en']
 				},
 				desc: [{
+						id: 'i98',
+						type: 'textarea',
+						rowsNb: 8,
+						value: 'Eheh l\'ami quoi de neuf c\'est long tout ce tete sinon <h2>ca va? la fa</h2>mille? les amis? la santé? bonsoir enfin au revoir anticonstitutionnelement ;) bisous',
+						label: 'Lettre pour chirac',
+						multilang: true,
+						icon: 'fas fa-joint',
+						info: 'Il faut bien écrire vous avez affaire avec un président'
+
+					},
+					{
 						id: 'i1',
 						type: 'text',
 						size: 10,
 						value: 'First item',
 						label: 'Id de l\'ambulance',
 						icon: 'fas fa-ambulance',
-						rightIcon: 'fas fa-joint'
+						rightIcon: 'fas fa-joint',
+						info: 'Il faut bien écrire vous avez affaire avec un président'
 					},
 					{
 						id: 'i0',
@@ -70,7 +82,9 @@
 						type: 'radio',
 						options: [{
 								label: 'chien',
-								id: 'dog'
+								id: 'dog',
+								info: 'Il faut bien écrire vous avez affaire avec un président'
+
 							},
 							{
 								label: 'chat',
@@ -122,6 +136,26 @@
 								value: 'girl'
 							}
 						]
+					},
+					{
+						id: 'i18',
+						type: 'text',
+						size: 10,
+						value: 'First item',
+						label: 'Id de l\'ambulance',
+						icon: 'fas fa-ambulance',
+						rightIcon: 'far fa-question-circle',
+						multilang: false
+					},
+					{
+						id: 'logon',
+						type: 'text',
+						size: 10,
+						value: 'First item',
+						label: 'Id de l\'ambulance',
+						icon: 'auto',
+						rightIcon: 'far fa-question-circle',
+						multilang: true
 					}
 
 
@@ -134,20 +168,20 @@
 					langs: ['fr', 'en']
 				},
 				desc: [{
-					id: 'i1',
+					id: 'logon',
 					type: 'text',
 					size: 10,
 					value: 'First item',
 					label: 'Id de l\'ambulance',
-					icon: 'fas fa-ambulance',
-					rightIcon: 'fas fa-joint',
-					multilang: true
+					icon: 'auto',
+					rightIcon: 'far fa-question-circle',
+					multilang: false
 				}]
 			}
 		}
 	</script>
 
-	<formr id="form2"></formr>
+	<formr id="form1"></formr>
 
 	<script src="https://kit.fontawesome.com/14194217cb.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/riot@4/riot+compiler.min.js"></script>
@@ -163,14 +197,53 @@
 	<script type="riot" src="iselect.html"></script>
 	<script type="riot" src="imulti_select.html"></script>
 	<script type="riot" src="irow.html"></script>
+	<script type="riot" src="itextarea.html"></script>
+	<script type="riot" src="jtoolTip.html"></script>
 	<script type="text/javascript">
 		riot.install(function(component) {
 			component.i18n = function(id) {
-					return id
+				return id
+			}
+			component.langName = function(id) {
+				return id
+			}
+			component.selectIcon=function(field) {
+				//return 'fas fa-tags '+ field.id
+				if (field.icon!='auto') return field.icon
+				lowerCaseId = field.id.toLowerCase()
+				if (lowerCaseId.indexOf('tags') != -1) ret = 'fas fa-tags';
+				if (lowerCaseId.indexOf('logon') != -1) ret = 'fas fa-user';
+				if (lowerCaseId.indexOf('mail') != -1) ret = 'fal fa-envelope';
+				if (lowerCaseId.indexOf('address') != -1) ret = 'fal fa-map-marker-alt';
+				if (lowerCaseId.indexOf('name') != -1) ret = 'fal fa-user';
+				if (lowerCaseId.indexOf('url') != -1) ret = 'fal fa-link';
+				if (lowerCaseId.indexOf('password') != -1) ret = 'fal fa-key';
+				if (lowerCaseId.indexOf('lang') != -1) ret = 'fal fa-language';
+				if (lowerCaseId.indexOf('google') != -1) ret = 'fab fa-google';
+				if (lowerCaseId.indexOf('twitter') != -1) ret = 'fab fa-twitter';
+				if (lowerCaseId.indexOf('facebook') != -1) ret = 'fab fa-facebook';
+				if (ret) return ret
+				switch (data.subType) {
+					case 'email':
+						ret = 'fal fa-envelope';
+						break;
+					case 'tel':
+						ret = 'fal fa-phone';
+						break;
+					case 'number':
+						ret = 'fal fa-list-ol';
+						break;
+					case 'date':
+					case 'month':
+					case 'datetime':
+					case 'datetimepicker':
+						ret = 'fal fa-calendar-alt';
+						break;
 				}
-				component.langName = function(id) {
-					return id
-				}
+
+				if (!ret) ret = 'fal fa-greater-than';
+				return ret
+			}
 		})
 
 

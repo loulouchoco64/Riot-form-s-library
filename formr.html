@@ -5,7 +5,12 @@
 			<template is={'i'+field.type} field={field} attr={state.attr}></template>
 		</div>
 	</div>
-
+	<style>
+		.hide,
+		.form-inline .hide {
+			display: none;
+		}
+	</style>
 
 	<script>
 		export default {

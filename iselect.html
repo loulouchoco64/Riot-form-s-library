@@ -1,5 +1,7 @@
 <iselect>
 	<jlabel name={props.field.label}></jlabel>
+	<jtoolTip if={props.field.info} info={props.field.info}>
+	</jtoolTip>
 	<div>
 		<select class="form-control" id={props.field.id}>
 			<template  each={option in props.field.options}>

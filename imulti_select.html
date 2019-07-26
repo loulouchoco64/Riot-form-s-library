@@ -1,6 +1,8 @@
 <imulti_select>
 	<div>
 		<jlabel name={props.field.label}></jlabel>
+		<jtoolTip if={props.field.info} info={props.field.info}>
+		</jtoolTip>
 		<select multiple class="form-control" id={props.field.id}>
 			<template each={option in props.field.options}>
 				<option value={option.value}>
