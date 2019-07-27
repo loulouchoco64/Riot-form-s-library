@@ -1,6 +1,8 @@
 <ihr>
-	<h5>{props.field.title}</h5>
-	<jtoolTip if={props.field.info} info={props.field.info}>
-	</jtoolTip>
-	<hr/>
+    <div name={props.field.id}>
+        <jicon field={props.field}></jicon>
+        <span class="fhrlabel {props.field.class}"> {i18n(props.field.label)}</span>
+        <jtooltip help={props.field.help}></jtooltip>
+        <hr>
+    </div>
 </ihr>

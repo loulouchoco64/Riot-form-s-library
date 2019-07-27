@@ -1,8 +1,22 @@
 <icheckbox>
-	<div class="form-check">
-		<input type="checkbox" class="form-check-input" id={props.field.id} value={props.field.value}>
-		<label class="form-check-label" for={props.field.id}>{props.field.label}</label>
-		<jtoolTip if={props.field.info} info={props.field.info}>
-		</jtoolTip>
-	</div>
+    <jlabel field={props.field}></jlabel>
+    <jtooltip help={props.field.help}></jtooltip>
+    <div class="aaad-inline">
+    <template each={ option in props.field.options }>
+        <label class="fcheck">{i18n(option.label)}<jtooltip help={option.help}></jtooltip>
+            <input { ...props.field } type="checkbox" value={option.id} name={props.field.name} id={}>
+            <span class="fcheckmark"></span>
+        </label>
+    </template>
+    </div>
 </icheckbox>
+
+<!--icheckbox>
+	<div class="form-check">
+        <jlabel field={props.field}></jlabel>
+        <jtooltip help={props.field.help}></jtooltip>
+        <input type="checkbox" class="form-check-input" name={props.field.id} value={props.field.value}>
+		<label class="form-check-label" for={props.field.id}>{props.field.label}</label>
+		<jtooltip help={props.field.help}></jtooltip>
+	</div>
+</icheckbox-->

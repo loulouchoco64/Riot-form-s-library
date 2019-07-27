@@ -1,16 +1,24 @@
 <iradio>
-	<div class="form-group">
-
-		<template each={ option in props.field.options }>
-			<div class="custom-control custom-radio">
-				<input type="radio" id={option.id} value={option.id} name={props.field.name} class="custom-control-input">
-				<label class="custom-control-label" for={option.id}>{option.label}</label>
-				<jtoolTip if={option.info} info={option.info}>
-	</jtoolTip>
-			</div>
-		</template>
-	</div>
-
-
-
+    <jlabel field={props.field}></jlabel>
+    <jtooltip help={props.field.help}></jtooltip>
+    <div class="aaad-inline">
+    <template each={ option in props.field.options }>
+        <label class="fradio">{i18n(option.label)}<jtoolTip help={option.help}></jtoolTip>
+            <input { ...props.field } type="radio" value={option.id} name={props.field.name} id={}>
+            <span class="fradiomark"></span>
+        </label>
+    </template>
+    </div>
 </iradio>
+
+<!--iradio>
+    <jlabel field={props.field}></jlabel>
+    <jtooltip help={props.field.help}></jtooltip>
+    <template each={ option in props.field.options }>
+        <div class="custom-control custom-radio">
+            <input type="radio" id={option.id} value={option.id} name={props.field.name} class="custom-control-input">
+            <label class="custom-control-label" for={option.id}>{i18n(option.label)}</label>
+            <jtoolTip help={option.help}></jtoolTip>
+        </div>
+    </template>
+</iradio-->
