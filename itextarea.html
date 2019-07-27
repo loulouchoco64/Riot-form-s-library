@@ -1,20 +1,16 @@
 <itextarea>
-	<label>{props.field.label}</label>
-	<jtoolTip if={props.field.info} info={props.field.info}>
-	</jtoolTip>
-	<template if={props.field.multilang} each={lang in props.attr.langs}>
-		<button type="button" class="btn {btnLangColor(lang)} btn-sm ml-1" idLang={lang} onclick={selectLang}>{langName(lang)} <span class="inputFeedback"></span></button>
-	</template>
-	
-	<div each={lang in state.langs} class="input-group mb-3 {lang==state.currentLang || !lang?'':'hide'}">
-		<jicon icon={props.field.icon} field={props.field}></jicon>
-		<textarea class="form-control" rows={props.field.rowsNb} id={buildId(lang)} >{props.field.value}
-	</textarea>
-		<jicon rightIcon={props.field.rightIcon}></jicon>
+    <jlabel field={props.field}></jlabel>
+    <jtooltip help={props.field.help}></jtooltip>
+    <template if={props.field.multilang} each={lang in props.attr.langs}>
+        <button type="button" class="btn {btnLangColor(lang)} btn-sm ml-1" idLang={lang} onclick={selectLang}>{langName(lang)} <span class="inputFeedback"></span></button>
+    </template>
 
-	</div>
-	
-	
+    <div each={lang in state.langs} class="input-group mb-3 {lang==state.currentLang || !lang?'':'hide'}">
+        <jaddon field={props.field} placement='left'></jaddon>
+        <textarea { ...props.field } class="form-control {props.field.class}" rows={props.field.rowsNb} name={buildId(lang)} id={}>{defaultValue()}</textarea>
+        <jaddon field={props.field} placement='right'></jaddon>
+    </div>
+
 	
 	
 	<script>
@@ -32,18 +28,19 @@
 			},
 			btnLangColor(lang)
 			{
-				return lang==this.state.currentLang?'btn-primary':'btn-danger'
+				return lang==this.state.currentLang?'btn-secondary':'btn-light'
 			},
 			buildId(lang){
 				return this.props.field.multilang?this.props.field.id + '.' +lang:this.props.field.id
 			},
+            defaultValue() {
+               if(this.state.currentLang == this.props.attr.langs[0]) return this.props.field.value
+			}, 
 			selectLang(ev) {
 				this.state.currentLang = ev.target.attributes.idLang.value
 				this.update()
 			}
 		}
-
 	</script>
-
 </itextarea>
 

@@ -1,15 +1,13 @@
 <iselect>
-	<jlabel name={props.field.label}></jlabel>
-	<jtoolTip if={props.field.info} info={props.field.info}>
-	</jtoolTip>
+	<jlabel field={props.field}></jlabel>
+	<jtooltip help={props.field.help}></jtooltip>
 	<div>
-		<select class="form-control" id={props.field.id}>
-			<template  each={option in props.field.options}>
+		<select { ...props.field } class="form-control  {props.field.class}" name={props.field.id} id={}>
+			<template each={option in props.field.options}>
 				<option value={option.value}>
-					{option.label}
+					{i18n(option.label)}
 				</option>
 			</template>
-
 		</select>
 	</div>
 </iselect>

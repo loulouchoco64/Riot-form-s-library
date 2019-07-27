@@ -1,0 +1,13 @@
+<imultiselect>
+	<div>
+		<jlabel field={props.field}></jlabel>
+		<jtooltip help={props.field.help}></jtooltip>
+		<select { ...props.field } multiple class="form-control {props.field.class}" name={props.field.id} id={}>
+			<template each={option in props.field.options}>
+				<option value={option.value}>
+					{i18n(option.label)}
+				</option>
+			</template>
+		</select>
+	</div>
+</imultiselect>

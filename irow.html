@@ -1,7 +1,7 @@
 <irow>
 	<div class="row">
-		<template each={ field in props.field.desc }>
-			<div class="col">
+		<template each={ (field, i) in props.field.desc }>
+			<div class="col form-group  {props.field.class}" id="fgroup_{field.id || i}">
 				<template is={'i'+field.type} field={field} attr={props.attr}></template>
 			</div>
 		</template>

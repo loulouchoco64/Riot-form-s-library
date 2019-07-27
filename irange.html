@@ -1,0 +1,7 @@
+<irange>
+    <jlabel field={props.field}></jlabel>
+    <jtooltip help={props.field.help}></jtooltip>
+    <div class="input-group">
+        <input { ...props.field } type="range" class="form-control custom-range {props.field.class}" name={props.field.id}  min={props.field.min} max={props.field.max} step={props.field.step} value={props.field.value} id={}>
+    </div>
+</irange>
