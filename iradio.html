@@ -2,13 +2,79 @@
     <jlabel field={props.field}></jlabel>
     <jtooltip help={props.field.help}></jtooltip>
     <div class="aaad-inline">
-    <template each={ option in props.field.options }>
-        <label class="fradio">{i18n(option.label)}<jtoolTip help={option.help}></jtoolTip>
-            <input { ...props.field } type="radio" value={option.id} name={props.field.name} id={}>
-            <span class="fradiomark"></span>
-        </label>
-    </template>
+        <template each={ option in props.field.options }>
+            <label class="fradio">{i18n(option.label)}<jtoolTip help={option.help}></jtoolTip>
+                <input { ...props.field } type="radio" value={option.id} name={props.field.name} id={}>
+                <span class="fradiomark"></span>
+            </label>
+        </template>
     </div>
+    <style>
+ /* Customize the label (the fradio) */
+        .fradio {
+          display: block;
+          position: relative;
+          padding-left: 35px;
+          margin-bottom: 12px;
+          cursor: pointer;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .fradio input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+
+        /* Create a custom checkbox */
+        .fradiomark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+          background-color: #eee;
+          border-radius: 50%;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .fradio:hover input ~ .fradiomark {
+          background-color: #ccc;
+        }
+
+        /* When the radio is checked, add a blue background */
+        .fradio input:checked ~ .fradiomark {
+          background-color: #2196F3;
+        }
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        .fradiomark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+
+        /* Show the fradiomark when checked */
+        .fradio input:checked ~ .fradiomark:after {
+          display: block;
+        }
+
+        /* Style the indicator (dot/circle) */
+        .fradio .fradiomark:after {
+            top: 8px;
+            left: 8px;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: white;
+        }
+    </style>
 </iradio>
 
 <!--iradio>

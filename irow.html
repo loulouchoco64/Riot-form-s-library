@@ -2,7 +2,7 @@
 	<div class="row">
 		<template each={ (field, i) in props.field.desc }>
 			<div class="col form-group  {props.field.class}" id="fgroup_{field.id || i}">
-				<template is={'i'+callType(field.type)} field={field} attr={props.attr}></template>
+				<div is={'i'+callType(field.type)} field={field} attr={props.attr}></div>
 			</div>
 		</template>
 	</div>
