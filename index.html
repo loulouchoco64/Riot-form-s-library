@@ -15,17 +15,18 @@
 				},
 				desc: [
                     {
-                        id:'title15',
                         type:'title',
                         title:'Hello',
-                        icon:'fas fa-skull-crossbones'
+                        icon:'fas fa-skull-crossbones',
+                        help:'Help Please verify your info before',
                     },
                     {
-						id: 'ialertaaaa',
 						type: 'alert',
 						color: 'danger',
 						message: "ceci est un message d'alerte",
-                        icon: 'fas fa-exclamation-triangle'
+                        icon: 'fas fa-exclamation-triangle',
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 					},
                     {
 						id: 'i98',
@@ -35,7 +36,8 @@
 						label: 'Lettre pour chirac',
 						multilang: true,
 						icon: 'fas fa-running',
-						help: 'Il faut bien écrire vous avez affaire avec un président',
+						tip: 'Il faut bien écrire vous avez affaire avec un président',
+                        help:'Help Please verify your info before',
                         buttons:[{icon:'fas fa-running',onclick:'dosomething'}],
 
 					},{
@@ -44,13 +46,15 @@
                         color:'danger',
                         class:'btn-block btn-lg',
                         title:'GO !',
-                        help:'',
-                        onclick:'dosomething'
+                        onclick:'dosomething',
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
                     },
                     {
                         icon:'fas fa-running',
                         type:'range',
                         label:'Zoom',
+                        tip:'select the right zoom',
                         help:'select the right zoom',
                         onclick:'dosomething'
                     },
@@ -63,7 +67,8 @@
 						label: 'Id de l\'ambulance',
 						icon: 'fas fa-ambulance',
                         buttons:[{icon:'fas fa-running',onclick:'dosomething'},{title:'do it',onclick:'dosomething'}],
-						help: 'Il faut bien écrire vous avez affaire avec un président'
+						tip: 'Il faut bien écrire vous avez affaire avec un président',
+                        help:'Help Please verify your info before',
 					},
 					{
 						id: 'i0',
@@ -92,7 +97,9 @@
 						size: 10,
 						value: 'Second item',
 						label: 'Mot de passe',
-                        buttons:[{icon:'fas fa-running',onclick:'dosomething'},{title:'Do it',onclick:'dosomething'}]
+                        buttons:[{icon:'fas fa-running',onclick:'dosomething'},{title:'Do it',onclick:'dosomething'}],
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 					},
 					{
 						id: 'i3',
@@ -100,7 +107,9 @@
 						size: 10,
 						value: 'Third item',
 						label: 'date',
-                        buttons:[{icon:'fas fa-running',onclick:'dosomething'},{title:'Do it',onclick:'dosomething'}]
+                        buttons:[{icon:'fas fa-running',onclick:'dosomething'},{title:'Do it',onclick:'dosomething'}],
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 					},
 					{
 						id: 'i4',
@@ -111,45 +120,49 @@
                         onclick:'dosomething'
 					},
 					{
-						name: 'radioTest',
+						id: 'radioTest',
 						type: 'radio',
                         label: 'Choix animal',
 						options: [{
 								label: 'chien',
 								id: 'dog',
-								help: 'Il faut bien écrire vous avez affaire avec un président'
+								tip: 'Il faut bien écrire vous avez affaire avec un président'
 							},
 							{
 								label: 'chat',
-								id: 'cat'
+								id: 'cat',
+                                help:'Help Please verify your info before'
 							}
 						]
 					},
                     {
-						name: 'checkboxTest',
+						id: 'checkboxTest',
 						type: 'checkbox',
                         label: 'Choix animal',
 						options: [{
-								label: 'chien',
-								id: 'dog',
+								label: 'Oiseau',
+								id: 'bird',
 								help: 'Il faut bien écrire vous avez affaire avec un président'
 							},
 							{
-								label: 'chat',
-								id: 'cat'
+								label: 'Serpent',
+								id: 'snake',
+                                tip:'ça pique'
 							}
 						]
 					},
 					{
-						id: 'i9',
 						type: 'hr',
                         icon:'fas fa-plane',
-						label: 'Take your plane'
+						label: 'Take your plane',
+                        help:'Please verify your info before'
 					},
 					{
 						id: 'i9',
 						type: 'select',
 						label: 'Genre',
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 						options: [{
 								label: 'Garcon',
 								value: 'boy'
@@ -164,6 +177,8 @@
 						id: 'i10',
 						type: 'multiselect',
 						label: 'Musique',
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 						options: [{
 								label: 'Garcon',
 								value: 'boy'
@@ -182,7 +197,9 @@
 						label: 'Id de l\'ambulance',
 						icon: 'fas fa-ambulance',
                         buttons:[{icon:'fas fa-cogs',onclick:'dosomething'},{title:'Test',onclick:'dosomething'}],
-                        multilang: false
+                        multilang: false,
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 					},
 					{
 						id: 'logon',
@@ -191,7 +208,9 @@
 						value: 'First item',
 						label: 'Id de l\'ambulance',
                         buttons:[{icon:'fas fa-cogs',onclick:'dosomething'},{title:'test',onclick:'dosomething'}],
-						multilang: true
+						multilang: true,
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 					}
 
 
@@ -205,7 +224,6 @@
 				},
 				desc: [
                     {
-                        id:'title2',
                         type:'title',
                         title:'Bye !',
                         icon:'fas fa-radiation-alt'
@@ -248,13 +266,14 @@
 	<script type="riot" src="irow.html"></script>
     <script type="riot" src="ititle.html"></script>
 	<script type="riot" src="jtooltip.html"></script>
+    <script type="riot" src="jhelp.html"></script>
 	<script type="text/javascript">
 		riot.install(function(component) {
 			component.i18n = function(id) {
 				return id
 			}
 			component.langName = function(id) {
-                const langs={fr:'sFrançais',en:'English'}
+                const langs={fr:'français',en:'English'}
 				return langs[id] || id
 			}
 			component.selectIcon=function(field) {

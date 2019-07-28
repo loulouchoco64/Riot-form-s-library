@@ -1,9 +1,12 @@
 <icheckbox>
     <jlabel field={props.field}></jlabel>
-    <jtooltip help={props.field.help}></jtooltip>
+    <jtooltip tip={props.field.tip}></jtooltip>
+    <jhelp help={props.field.help}></jhelp>
     <div class="aaad-inline">
         <template each={ option in props.field.options }>
-            <label class="fcheck">{i18n(option.label)}<jtooltip help={option.help}></jtooltip>
+            <label class="fcheck">{i18n(option.label)}
+                <jtooltip tip={option.tip}></jtooltip>
+                <jhelp help={option.help}></jhelp>
                 <input { ...props.field } type="checkbox" value={option.id} name={props.field.name} id={}>
                 <span class="fcheckmark"></span>
             </label>

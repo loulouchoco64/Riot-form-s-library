@@ -1,6 +1,6 @@
 <iselect>
 	<jlabel field={props.field}></jlabel>
-	<jtooltip help={props.field.help}></jtooltip>
+	<jtooltip tip={props.field.tip}></jtooltip>
 	<div>
 		<select { ...props.field } class="form-control  {props.field.class}" name={props.field.id} id={}>
 			<template each={option in props.field.options}>
@@ -9,5 +9,6 @@
 				</option>
 			</template>
 		</select>
+        <jhelp help={props.field.help}></jhelp>
 	</div>
 </iselect>

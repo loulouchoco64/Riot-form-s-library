@@ -1,9 +1,12 @@
 <iradio>
     <jlabel field={props.field}></jlabel>
-    <jtooltip help={props.field.help}></jtooltip>
+    <jtooltip tip={props.field.tip}></jtooltip>
+    <jhelp help={props.field.help}></jhelp>
     <div class="aaad-inline">
         <template each={ option in props.field.options }>
-            <label class="fradio">{i18n(option.label)}<jtoolTip help={option.help}></jtoolTip>
+            <label class="fradio">{i18n(option.label)}
+                <jtooltip tip={option.tip}></jtooltip>
+                <jhelp help={option.help}></jhelp>
                 <input { ...props.field } type="radio" value={option.id} name={props.field.name} id={}>
                 <span class="fradiomark"></span>
             </label>

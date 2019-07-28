@@ -1,7 +1,7 @@
 <jtooltip>
-    <div if={props.help} class="ftooltip">
+    <div if={props.tip} class="ftooltip">
         <i class="far fa-question-circle ml-1"></i>
-        <div class="ftooltipText">{i18n(props.help)}</div>
+        <div class="ftooltipText">{i18n(props.tip)}</div>
     </div>
 
     <style>
@@ -13,6 +13,7 @@
 
         .ftooltip .ftooltipText
         {
+            font-size:1rem!important;
             visibility: hidden;
             width: 12rem;
             background-color: #ffc107;

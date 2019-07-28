@@ -1,8 +1,13 @@
 <ititle>
-    <div class="ftitle {props.field.class}"><jicon field={props.field}></jicon> {i18n(props.field.title)}</div>
+    <div class="ftitle {props.field.class}">
+        <jicon field={props.field}></jicon>
+        {i18n(props.field.title)}
+        <small><jtooltip tip={props.field.tip}></jtooltip></small>
+    </div>
+    <jhelp help={props.field.help}></jhelp>
     <style>
         .ftitle{
-            font-size:2rem;
+            font-size:3rem;
         }
     </style>
 </ititle>
