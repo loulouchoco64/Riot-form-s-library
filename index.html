@@ -30,12 +30,13 @@
                     {
 						id: 'i98',
 						type: 'textarea',
-						rowsNb: 8,
+						rows: 8,
 						value: 'Eheh l\'ami quoi de neuf c\'est long tout ce tete sinon <h2>ca va? la fa</h2>mille? les amis? la santé? bonsoir enfin au revoir anticonstitutionnelement ;) bisous',
 						label: 'Lettre pour chirac',
 						multilang: true,
 						icon: 'fas fa-running',
-						help: 'Il faut bien écrire vous avez affaire avec un président'
+						help: 'Il faut bien écrire vous avez affaire avec un président',
+                        buttons:[{icon:'fas fa-running',onclick:'dosomething'}],
 
 					},{
                         icon:'fas fa-running',
@@ -95,10 +96,10 @@
 					},
 					{
 						id: 'i3',
-						type: 'text',
+						type: 'datetime',
 						size: 10,
 						value: 'Third item',
-						label: 'Adresse',
+						label: 'date',
                         buttons:[{icon:'fas fa-running',onclick:'dosomething'},{title:'Do it',onclick:'dosomething'}]
 					},
 					{
@@ -246,7 +247,6 @@
 	<script type="riot" src="imultiselect.html"></script>
 	<script type="riot" src="irow.html"></script>
     <script type="riot" src="ititle.html"></script>
-	<script type="riot" src="itextarea.html"></script>
 	<script type="riot" src="jtooltip.html"></script>
 	<script type="text/javascript">
 		riot.install(function(component) {
@@ -254,14 +254,14 @@
 				return id
 			}
 			component.langName = function(id) {
-				return id
+                const langs={fr:'sFrançais',en:'English'}
+				return langs[id] || id
 			}
 			component.selectIcon=function(field) {
 				var ret, id='', subType='',type=''
 				if (field.icon && field.icon!='none') return field.icon
                 if(field.id) id = field.id.toLowerCase()
                 if(field.type) type = field.type
-                if(field.subType) subType = field.subType
                 if(field.onclick && !type) type = 'button'
                 let autoIcons={
                     tags:'fas fa-tags',
@@ -286,8 +286,7 @@
                 }
                 for (var possibleId in autoIcons) {
                     if (id.indexOf(possibleId) != -1 || 
-                       type.indexOf(possibleId) != -1 ||
-                       subType.indexOf(possibleId) != -1
+                       type.indexOf(possibleId) != -1
                        ) return autoIcons[possibleId]
                 }
                 if (!ret) ret = 'fas fa-greater-than';

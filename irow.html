@@ -2,8 +2,17 @@
 	<div class="row">
 		<template each={ (field, i) in props.field.desc }>
 			<div class="col form-group  {props.field.class}" id="fgroup_{field.id || i}">
-				<template is={'i'+field.type} field={field} attr={props.attr}></template>
+				<template is={'i'+callType(field.type)} field={field} attr={props.attr}></template>
 			</div>
 		</template>
 	</div>
+	<script>
+		export default {
+            callType(type){
+                let types=['textarea','date','color','datetime','datetime-local','email','month','number','tel','time','url','week']
+                if(types.indexOf(type) > -1) return 'text'
+                else return type
+            }
+		}
+	</script>
 </irow>

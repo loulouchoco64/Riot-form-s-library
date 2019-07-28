@@ -2,7 +2,7 @@
     <form name={props.id}>
         <div each={ (field, i) in state.desc }>
             <div class="form-group" id="fgroup_{field.id || i}">
-                <template is={'i'+field.type} field={field} attr={state.attr}></template>
+                <template is={'i'+callType(field.type)} field={field} attr={state.attr}></template>
             </div>
         </div>
     </form>    
@@ -12,6 +12,11 @@
 				this.state.desc = window.fields[this.props.id].desc
 				this.state.attr = window.fields[this.props.id].attr
 			},
+            callType(type){
+                let types=['textarea','date','color','datetime','datetime-local','email','month','number','tel','time','url','week']
+                if(types.indexOf(type) > -1) return 'text'
+                else return type
+            },
 			click() {
 				this.fields.push({
 					type: 'text',
