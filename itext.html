@@ -7,7 +7,7 @@
     
     <div each={lang in state.langs} class="input-group {lang==state.currentLang || !lang?'':'hide'}">
         <jaddon field={props.field} placement='left'></jaddon>
-        <input if={props.field.type!='textarea'} { ...props.field } type="{state.type}" class="form-control {props.field.class}" name={buildId(lang)} placeholder="text" size={props.field.size} value={defaultValue()} id={} onkeyup={change}>
+        <input if={props.field.type!='textarea'} { ...props.field } type={state.type} class="form-control {props.field.class}" name={buildId(lang)} placeholder="text" size={props.field.size} value={defaultValue()} id={} onkeyup={change}>
         
         <textarea  if={props.field.type=='textarea'} { ...props.field } class="form-control {props.field.class}" rows={props.field.rows} name={buildId(lang)} id={}>{defaultValue()}</textarea>
         
