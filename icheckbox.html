@@ -8,37 +8,61 @@
 				<jtooltip tip={option.tip}></jtooltip>
 				<jhelp help={option.help}></jhelp>
 				<input { ...props.field } type={"checkbox"} value={option.id} name={props.field.id} id={}>
-				<span class={props.field.type=='switch'?'fswitch-slider fswitch-round':'fcheckmark'}></span>
+				<span class={props.field.type=='switch'?'fswitchslider fswitchround':'fcheckmark'}></span>
 			</label>
 		</template>
 	</div>
 	<style>
-		/*-- Checkbox switch type toggle --*/
+        
+		/* Customize the label (the fswitch) */
 		.fswitch {
-			position: absolute;
-			display: inline-block;
-			width: 2.5rem;/
-			height: 1.3rem;
-			margin-top: 2px;
-		}
-
-		.fswitch input {
-			display: none;
-		}
-
-		.fswitch-slider {
+			display: block;
 			position: relative;
+			padding-left: 2.9rem;
+			margin-bottom: 12px;
 			cursor: pointer;
-			top: 0;
-			left: 0;
-			right: 0;
-			bottom: 0;
-			background-color: #ccc;
-			-webkit-transition: .4s;
-			transition: .4s;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
 		}
 
-		.fswitch-slider:before {
+		/* Hide the browser's default checkbox */
+		.fswitch input {
+			position: absolute;
+			opacity: 0;
+			cursor: pointer;
+			height: 0;
+			width: 0;
+		}
+
+		/* Create a custom checkbox */
+		.fswitchslider {
+			position: absolute;
+			top: 3px
+                ;
+			left: 0;
+		    height: 1.25rem;
+            width: 2.5rem;
+			background-color: #eee;
+            -webkit-transition: .4s;
+			transition: .4s;
+            
+		}
+
+		/* On mouse-over, add a grey background color */
+		.fswitch:hover input~.fswitchslider {
+			background-color: #ccc;
+		}
+
+		/* When the checkbox is checked, add a blue background */
+		.fswitch input:checked~.fswitchslider {
+			background-color: #2196F3;
+		}
+
+
+        
+		.fswitchslider:before {
 			position: absolute;
 			content: "";
 			height: 1.1rem;
@@ -50,36 +74,37 @@
 			transition: .4s;
 		}
 
-		input:checked+.fswitch-slider {
-			/*background-color: var(--navBarBg-backgroundColor); */
+
+        .fswitch input:checked~.fswitchslider {
 			background-color: blue;
 		}
-
-		input:checked+.fswitch-slider:before {
+        
+        .fswitch input:checked~.fswitchslider:before {
 			background-image: radial-gradient(#ffffff, rgb(210, 210, 210));
 		}
-
-		input:focus+.fswitch-slider {
-			/*box-shadow: 0 0 1px var(--navBarBg-backgroundColor);*/
+        
+        
+        .fswitch input:focus~.fswitchslider {
+			--box-shadow: 0 0 1px var(--navBarBg-backgroundColor);
 			box-shadow: 0 0 1px blue;
 		}
 
-		input:checked+.fswitch-slider:before {
+		.fswitch input:checked~.fswitchslider:before {
 			-webkit-transform: translateX(1.25rem);
 			-ms-transform: translateX(1.25rem);
 			transform: translateX(1.25rem);
 		}
-
-		input[disabled]+.fswitch-slider {
+        
+        .fswitch input[disabled]~.fswitchslider {
 			opacity: 0.5;
 		}
 
 
-		.fswitch-slider.fswitch-round {
+		.fswitchround {
 			border-radius: 3.4rem;
 		}
 
-		.fswitch-slider.fswitch-round:before {
+		.fswitchround:before {
 			border-radius: 50%;
 		}
 
@@ -115,6 +140,8 @@
 			height: 25px;
 			width: 25px;
 			background-color: #eee;
+            -webkit-transition: .4s;
+			transition: .4s;
 		}
 
 		/* On mouse-over, add a grey background color */
