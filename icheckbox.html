@@ -1,86 +1,160 @@
 <icheckbox>
-    <jlabel field={props.field}></jlabel>
-    <jtooltip tip={props.field.tip}></jtooltip>
-    <jhelp help={props.field.help}></jhelp>
-    <div class="aaad-inline">
-        <template each={ option in props.field.options }>
-            <label class="fcheck">{i18n(option.label)}
-                <jtooltip tip={option.tip}></jtooltip>
-                <jhelp help={option.help}></jhelp>
-                <input { ...props.field } type="checkbox" value={option.id} name={props.field.id} id={}>
-                <span class="fcheckmark"></span>
-            </label>
-        </template>
-    </div>
-    <style>
-        /* Customize the label (the fcheck) */
-        .fcheck {
-          display: block;
-          position: relative;
-          padding-left: 35px;
-          margin-bottom: 12px;
-          cursor: pointer;
-          -webkit-user-select: none;
-          -moz-user-select: none;
-          -ms-user-select: none;
-          user-select: none;
-        }
+	<jlabel field={props.field}></jlabel>
+	<jtooltip tip={props.field.tip}></jtooltip>
+	<jhelp help={props.field.help}></jhelp>
+	<div class="aaad-inline">
+		<template each={ option in props.field.options }>
+			<label class={props.field.type=='switch'?'fswitch':'fcheck'}>{i18n(option.label)}
+				<jtooltip tip={option.tip}></jtooltip>
+				<jhelp help={option.help}></jhelp>
+				<input { ...props.field } type={"checkbox"} value={option.id} name={props.field.id} id={}>
+				<span class={props.field.type=='switch'?'fswitch-slider fswitch-round':'fcheckmark'}></span>
+			</label>
+		</template>
+	</div>
+	<style>
+		/*-- Checkbox switch type toggle --*/
+		.fswitch {
+			position: absolute;
+			display: inline-block;
+			width: 2.5rem;/
+			height: 1.3rem;
+			margin-top: 2px;
+		}
 
-        /* Hide the browser's default checkbox */
-        .fcheck input {
-          position: absolute;
-          opacity: 0;
-          cursor: pointer;
-          height: 0;
-          width: 0;
-        }
+		.fswitch input {
+			display: none;
+		}
 
-        /* Create a custom checkbox */
-        .fcheckmark {
-          position: absolute;
-          top: 0;
-          left: 0;
-          height: 25px;
-          width: 25px;
-          background-color: #eee;
-        }
+		.fswitch-slider {
+			position: relative;
+			cursor: pointer;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			background-color: #ccc;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
 
-        /* On mouse-over, add a grey background color */
-        .fcheck:hover input ~ .fcheckmark {
-          background-color: #ccc;
-        }
+		.fswitch-slider:before {
+			position: absolute;
+			content: "";
+			height: 1.1rem;
+			width: 1.1rem;
+			left: 0.1rem;
+			bottom: 0.1rem;
+			background-color: white;
+			-webkit-transition: .4s;
+			transition: .4s;
+		}
 
-        /* When the checkbox is checked, add a blue background */
-        .fcheck input:checked ~ .fcheckmark {
-          background-color: #2196F3;
-        }
+		input:checked+.fswitch-slider {
+			/*background-color: var(--navBarBg-backgroundColor); */
+			background-color: blue;
+		}
 
-        /* Create the fcheckmark/indicator (hidden when not checked) */
-        .fcheckmark:after {
-          content: "";
-          position: absolute;
-          display: none;
-        }
+		input:checked+.fswitch-slider:before {
+			background-image: radial-gradient(#ffffff, rgb(210, 210, 210));
+		}
 
-        /* Show the fcheckmark when checked */
-        .fcheck input:checked ~ .fcheckmark:after {
-          display: block;
-        }
+		input:focus+.fswitch-slider {
+			/*box-shadow: 0 0 1px var(--navBarBg-backgroundColor);*/
+			box-shadow: 0 0 1px blue;
+		}
 
-        /* Style the fcheckmark/indicator */
-        .fcheck .fcheckmark:after {
-          left: 9px;
-          top: 5px;
-          width: 6px;
-          height: 12px;
-          border: solid white;
-          border-width: 0 3px 3px 0;
-          -webkit-transform: rotate(45deg);
-          -ms-transform: rotate(45deg);
-          transform: rotate(45deg);
-        }  
+		input:checked+.fswitch-slider:before {
+			-webkit-transform: translateX(1.25rem);
+			-ms-transform: translateX(1.25rem);
+			transform: translateX(1.25rem);
+		}
+
+		input[disabled]+.fswitch-slider {
+			opacity: 0.5;
+		}
+
+
+		.fswitch-slider.fswitch-round {
+			border-radius: 3.4rem;
+		}
+
+		.fswitch-slider.fswitch-round:before {
+			border-radius: 50%;
+		}
+
+		
+
+		/* Customize the label (the fcheck) */
+		.fcheck {
+			display: block;
+			position: relative;
+			padding-left: 35px;
+			margin-bottom: 12px;
+			cursor: pointer;
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
+		}
+
+		/* Hide the browser's default checkbox */
+		.fcheck input {
+			position: absolute;
+			opacity: 0;
+			cursor: pointer;
+			height: 0;
+			width: 0;
+		}
+
+		/* Create a custom checkbox */
+		.fcheckmark {
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 25px;
+			width: 25px;
+			background-color: #eee;
+		}
+
+		/* On mouse-over, add a grey background color */
+		.fcheck:hover input~.fcheckmark {
+			background-color: #ccc;
+		}
+
+		/* When the checkbox is checked, add a blue background */
+		.fcheck input:checked~.fcheckmark {
+			background-color: #2196F3;
+		}
+
+		/* Create the fcheckmark/indicator (hidden when not checked) */
+		.fcheckmark:after {
+			content: "";
+			position: absolute;
+			display: none;
+		}
+
+		/* Show the fcheckmark when checked */
+		.fcheck input:checked~.fcheckmark:after {
+			display: block;
+		}
+
+		/* Style the fcheckmark/indicator */
+		.fcheck .fcheckmark:after {
+			left: 9px;
+			top: 5px;
+			width: 6px;
+			height: 12px;
+			border: solid white;
+			border-width: 0 3px 3px 0;
+			-webkit-transform: rotate(45deg);
+			-ms-transform: rotate(45deg);
+			transform: rotate(45deg);
+		}
+
 	</style>
 </icheckbox>
+
 
 <!--icheckbox>
 	<div class="form-check">
