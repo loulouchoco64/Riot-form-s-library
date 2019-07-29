@@ -1,7 +1,8 @@
 <jlabel>
 	<label class="label" for={props.field.id}>{i18n(props.field.label)}</label>
-	<span class="inputRequired"></span>
-	<span class="inputFeedback"></span>
+	<span class="inputRequired"><i class="fas fa-star-of-life"></i></span>
+	<span class="inputFeedbackValid"><i class="fas fa-check-circle"></i></span>
+    <span class="inputFeedbackNotValid"><i class="fas fa-times-circle"></i></span>
     <style>
         .label
         {
