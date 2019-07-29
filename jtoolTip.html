@@ -1,36 +1,37 @@
-<jtoolTip>
-<div class="toolTip">
-	<i class="far fa-question-circle ml-1"></i>
-	<div class="toolTipText">{props.info}</div>
-</div>
+<jtooltip>
+    <div if={props.tip} class="ftooltip">
+        <i class="far fa-question-circle ml-1"></i>
+        <div class="ftooltipText">{i18n(props.tip)}</div>
+    </div>
 
-<style>
-	.toolTip
-    {
-        position: relative;
-        display: inline-block;
-    }
+    <style>
+        .ftooltip
+        {
+            position: relative;
+            display: inline-block;
+        }
 
-    .toolTip .toolTipText
-    {
-        visibility: hidden;
-        width: 12rem;
-        background-color: #ffc107;
-        color: white;
-        text-align: center;
-    	border: thin solid lightgray;
-        border-radius: 6px;
-        padding: 5px 0;
-        position: absolute;/* Position the tooltip text */
-        z-index: 1;
-        bottom: 125%;
-        left: 0%;
-        margin-left: -60px;
-    }
+        .ftooltip .ftooltipText
+        {
+            font-size:1rem!important;
+            visibility: hidden;
+            width: 12rem;
+            background-color: #ffc107;
+            color: white;
+            text-align: center;
+            border: thin solid lightgray;
+            border-radius: 6px;
+            padding: 5px 0;
+            position: absolute;/* Position the tooltip text */
+            z-index: 1;
+            bottom: 125%;
+            left: 0%;
+            margin-left: -60px;
+        }
 
-    .toolTip:hover .toolTipText
-    {
-        visibility: visible;
-    }
-</style>
-	</jtoolTip>
+        .ftooltip:hover .ftooltipText
+        {
+            visibility: visible;
+        }
+    </style>
+</jtooltip>

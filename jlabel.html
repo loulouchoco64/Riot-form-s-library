@@ -1,5 +1,11 @@
 <jlabel>
-	<label>{i18n(props.label)}</label>
+	<label class="label" for={props.field.id}>{i18n(props.field.label)}</label>
 	<span class="inputRequired"></span>
 	<span class="inputFeedback"></span>
+    <style>
+        .label
+        {
+            font-size:1.3rem;
+        }
+    </style>
 </jlabel>

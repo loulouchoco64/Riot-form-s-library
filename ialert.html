@@ -1,0 +1,13 @@
+<ialert>
+    <div class="alert alert-{props.field.color||'info'} {props.field.class}" role="alert">
+        <div>
+            <jicon field={props.field}></jicon> {i18n(props.field.message)}
+            <jtooltip tip={props.field.tip}></jtooltip>
+        </div>
+        <jhelp help={props.field.help}></jhelp>
+    </div>
+    <style>
+        .alert div {font-size:2rem;}
+      
+    </style>
+</ialert>

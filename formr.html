@@ -1,23 +1,22 @@
 <formr>
-	<h3>Bonjour</h3>
-	<div each={ field in state.desc }>
-		<div class="form-group">
-			<template is={'i'+field.type} field={field} attr={state.attr}></template>
-		</div>
-	</div>
-	<style>
-		.hide,
-		.form-inline .hide {
-			display: none;
-		}
-	</style>
-
+    <form name={props.id}>
+        <div each={ (field, i) in state.desc }>
+            <div class="form-group" id="fgroup_{field.id || i}">
+                <div is={'i'+callType(field.type)} field={field} attr={state.attr}></div>
+            </div>
+        </div>
+    </form>    
 	<script>
 		export default {
 			onBeforeMount() {
 				this.state.desc = window.fields[this.props.id].desc
 				this.state.attr = window.fields[this.props.id].attr
 			},
+            callType(type){
+                let types=['textarea','date','color','datetime','datetime-local','email','month','number','tel','time','url','week']
+                if(types.indexOf(type) > -1) return 'text'
+                else return type
+            },
 			click() {
 				this.fields.push({
 					type: 'text',
@@ -27,7 +26,28 @@
 				this.update()
 			}
 		}
-
 	</script>
+	<style>
+         /*-- redefine some bootstrap style --*/
+		.hide,
+		.form-inline .hide {
+			display: none;
+		}
+        .form-group
+        {
+            margin-bottom: 1.5rem; /*bottom margin after each field*/
+        }
+        
 
+        label
+        {
+            font-size:1.1rem;
+            font-weight: 500;
+        }
+        
+        button:disabled
+        {
+          cursor: not-allowed;
+        }
+    </style>
 </formr>

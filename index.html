@@ -13,17 +13,52 @@
 					lang: 'fr',
 					langs: ['fr', 'en']
 				},
-				desc: [{
+				desc: [
+                    {
+                        type:'title',
+                        title:'Hello',
+                        icon:'fas fa-skull-crossbones',
+                        help:'Help Please verify your info before',
+                    },
+                    {
+						type: 'alert',
+						color: 'danger',
+						message: "ceci est un message d'alerte",
+                        icon: 'fas fa-exclamation-triangle',
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
+					},
+                    {
 						id: 'i98',
 						type: 'textarea',
-						rowsNb: 8,
+						rows: 8,
 						value: 'Eheh l\'ami quoi de neuf c\'est long tout ce tete sinon <h2>ca va? la fa</h2>mille? les amis? la santé? bonsoir enfin au revoir anticonstitutionnelement ;) bisous',
 						label: 'Lettre pour chirac',
 						multilang: true,
-						icon: 'fas fa-joint',
-						info: 'Il faut bien écrire vous avez affaire avec un président'
+						icon: 'fas fa-running',
+						tip: 'Il faut bien écrire vous avez affaire avec un président',
+                        help:'Help Please verify your info before',
+                        buttons:[{icon:'fas fa-running',onclick:'dosomething'}],
 
-					},
+					},{
+                        icon:'fas fa-running',
+                        type:'button',
+                        color:'danger',
+                        class:'btn-block btn-lg',
+                        title:'GO !',
+                        onclick:'dosomething',
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
+                    },
+                    {
+                        icon:'fas fa-running',
+                        type:'range',
+                        label:'Zoom',
+                        tip:'select the right zoom',
+                        help:'select the right zoom',
+                        onclick:'dosomething'
+                    },
+                       
 					{
 						id: 'i1',
 						type: 'text',
@@ -31,8 +66,9 @@
 						value: 'First item',
 						label: 'Id de l\'ambulance',
 						icon: 'fas fa-ambulance',
-						rightIcon: 'fas fa-joint',
-						info: 'Il faut bien écrire vous avez affaire avec un président'
+                        buttons:[{icon:'fas fa-running',onclick:'dosomething'},{title:'do it',onclick:'dosomething'}],
+						tip: 'Il faut bien écrire vous avez affaire avec un président',
+                        help:'Help Please verify your info before',
 					},
 					{
 						id: 'i0',
@@ -44,7 +80,7 @@
 								value: 'First item',
 								label: 'Id de l\'ambulance',
 								icon: 'fas fa-ambulance',
-								rightIcon: 'fas fa-joint'
+                                buttons:[{icon:'fas fa-running',onclick:'dosomething'},{title:'test',onclick:'dosomething'}]
 							},
 							{
 								id: 'i12',
@@ -56,63 +92,77 @@
 						]
 					},
 					{
-						id: 'i2',
+						id: 'password',
 						type: 'password',
 						size: 10,
 						value: 'Second item',
-						label: 'Mot de passe'
+						label: 'Mot de passe',
+                        buttons:[{icon:'fas fa-running',onclick:'dosomething'},{title:'Do it',onclick:'dosomething'}],
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 					},
 					{
 						id: 'i3',
-						type: 'text',
+						type: 'datetime',
 						size: 10,
 						value: 'Third item',
-						label: 'Adresse',
-						rightIcon: 'fas fa-joint'
+						label: 'date',
+                        buttons:[{icon:'fas fa-running',onclick:'dosomething'},{title:'Do it',onclick:'dosomething'}],
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 					},
 					{
 						id: 'i4',
 						type: 'button',
 						size: 23,
 						title: 'Fourth item',
-						icon: 'fas fa-restroom'
+						icon: 'fas fa-restroom',
+                        onclick:'dosomething'
 					},
 					{
-						name: 'radioTest',
+						id: 'radioTest',
 						type: 'radio',
+                        label: 'Choix animal',
 						options: [{
 								label: 'chien',
 								id: 'dog',
-								info: 'Il faut bien écrire vous avez affaire avec un président'
-
+								tip: 'Il faut bien écrire vous avez affaire avec un président'
 							},
 							{
 								label: 'chat',
-								id: 'cat'
+								id: 'cat',
+                                help:'Help Please verify your info before'
+							}
+						]
+					},
+                    {
+						id: 'checkboxTest',
+						type: 'checkbox',
+                        label: 'Choix animal',
+						options: [{
+								label: 'Oiseau',
+								id: 'bird',
+								help: 'Il faut bien écrire vous avez affaire avec un président'
+							},
+							{
+								label: 'Serpent',
+								id: 'snake',
+                                tip:'ça pique'
 							}
 						]
 					},
 					{
-						id: 'i9',
 						type: 'hr',
-						title: 'Séparation'
-					},
-					{
-						id: 'i7',
-						type: 'checkbox',
-						label: 'majeur',
-						value: 'majeur'
-					},
-					{
-						id: 'i8',
-						type: 'checkbox',
-						label: 'garcon',
-						value: 'false'
+                        icon:'fas fa-plane',
+						label: 'Take your plane',
+                        help:'Please verify your info before'
 					},
 					{
 						id: 'i9',
 						type: 'select',
 						label: 'Genre',
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 						options: [{
 								label: 'Garcon',
 								value: 'boy'
@@ -125,8 +175,10 @@
 					},
 					{
 						id: 'i10',
-						type: 'multi_select',
+						type: 'multiselect',
 						label: 'Musique',
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 						options: [{
 								label: 'Garcon',
 								value: 'boy'
@@ -144,8 +196,10 @@
 						value: 'First item',
 						label: 'Id de l\'ambulance',
 						icon: 'fas fa-ambulance',
-						rightIcon: 'far fa-question-circle',
-						multilang: false
+                        buttons:[{icon:'fas fa-cogs',onclick:'dosomething'},{title:'Test',onclick:'dosomething'}],
+                        multilang: false,
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 					},
 					{
 						id: 'logon',
@@ -153,9 +207,10 @@
 						size: 10,
 						value: 'First item',
 						label: 'Id de l\'ambulance',
-						icon: 'auto',
-						rightIcon: 'far fa-question-circle',
-						multilang: true
+                        buttons:[{icon:'fas fa-cogs',onclick:'dosomething'},{title:'test',onclick:'dosomething'}],
+						multilang: true,
+                        tip:'Tip Please verify your info before',
+                        help:'Help Please verify your info before',
 					}
 
 
@@ -167,81 +222,93 @@
 					lang: 'fr',
 					langs: ['fr', 'en']
 				},
-				desc: [{
-					id: 'logon',
-					type: 'text',
-					size: 10,
-					value: 'First item',
-					label: 'Id de l\'ambulance',
-					icon: 'auto',
-					rightIcon: 'far fa-question-circle',
-					multilang: false
+				desc: [
+                    {
+                        type:'title',
+                        title:'Bye !',
+                        icon:'fas fa-radiation-alt'
+                    },
+                    {
+                        id: 'logon',
+                        type: 'text',
+                        size: 10,
+                        value: 'First item',
+                        label: 'Id de l\'ambulance',
+                        buttons:[{icon:'fas fa-cogs',title:'',onclick:'dosomething'},{title:'test',onclick:'dosomething'}],
+                        multilang: false
 				}]
 			}
 		}
 	</script>
 
-	<formr id="form1"></formr>
+    <div class="container">
+        <formr id="form1"></formr>
+        <formr id="form2"></formr>
+    </div>
+
 
 	<script src="https://kit.fontawesome.com/14194217cb.js"></script>
 	<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/riot@4/riot+compiler.min.js"></script>
 	<script type="riot" src="formr.html"></script>
+    <script type="riot" src="ihr.html"></script>
+    <script type="riot" src="ialert.html"></script>
 	<script type="riot" src="itext.html"></script>
 	<script type="riot" src="ipassword.html"></script>
 	<script type="riot" src="ibutton.html"></script>
 	<script type="riot" src="jlabel.html"></script>
+    <script type="riot" src="jicon.html"></script>
 	<script type="riot" src="icheckbox.html"></script>
-	<script type="riot" src="ihr.html"></script>
 	<script type="riot" src="iradio.html"></script>
-	<script type="riot" src="jicon.html"></script>
+    <script type="riot" src="irange.html"></script>
+	<script type="riot" src="jaddon.html"></script>
 	<script type="riot" src="iselect.html"></script>
-	<script type="riot" src="imulti_select.html"></script>
+	<script type="riot" src="imultiselect.html"></script>
 	<script type="riot" src="irow.html"></script>
-	<script type="riot" src="itextarea.html"></script>
-	<script type="riot" src="jtoolTip.html"></script>
+    <script type="riot" src="ititle.html"></script>
+	<script type="riot" src="jtooltip.html"></script>
+    <script type="riot" src="jhelp.html"></script>
 	<script type="text/javascript">
 		riot.install(function(component) {
 			component.i18n = function(id) {
 				return id
 			}
 			component.langName = function(id) {
-				return id
+                const langs={fr:'français',en:'English'}
+				return langs[id] || id
 			}
 			component.selectIcon=function(field) {
-				//return 'fas fa-tags '+ field.id
-				if (field.icon!='auto') return field.icon
-				lowerCaseId = field.id.toLowerCase()
-				if (lowerCaseId.indexOf('tags') != -1) ret = 'fas fa-tags';
-				if (lowerCaseId.indexOf('logon') != -1) ret = 'fas fa-user';
-				if (lowerCaseId.indexOf('mail') != -1) ret = 'fal fa-envelope';
-				if (lowerCaseId.indexOf('address') != -1) ret = 'fal fa-map-marker-alt';
-				if (lowerCaseId.indexOf('name') != -1) ret = 'fal fa-user';
-				if (lowerCaseId.indexOf('url') != -1) ret = 'fal fa-link';
-				if (lowerCaseId.indexOf('password') != -1) ret = 'fal fa-key';
-				if (lowerCaseId.indexOf('lang') != -1) ret = 'fal fa-language';
-				if (lowerCaseId.indexOf('google') != -1) ret = 'fab fa-google';
-				if (lowerCaseId.indexOf('twitter') != -1) ret = 'fab fa-twitter';
-				if (lowerCaseId.indexOf('facebook') != -1) ret = 'fab fa-facebook';
-				if (ret) return ret
-				switch (data.subType) {
-					case 'email':
-						ret = 'fal fa-envelope';
-						break;
-					case 'tel':
-						ret = 'fal fa-phone';
-						break;
-					case 'number':
-						ret = 'fal fa-list-ol';
-						break;
-					case 'date':
-					case 'month':
-					case 'datetime':
-					case 'datetimepicker':
-						ret = 'fal fa-calendar-alt';
-						break;
-				}
-
-				if (!ret) ret = 'fal fa-greater-than';
+				var ret, id='', subType='',type=''
+				if (field.icon && field.icon!='none') return field.icon
+                if(field.id) id = field.id.toLowerCase()
+                if(field.type) type = field.type
+                if(field.onclick && !type) type = 'button'
+                let autoIcons={
+                    tags:'fas fa-tags',
+                    logon:'fas fa-user',
+                    address:'fas fa-map-marker-alt',
+                    name:'fas fa-user',
+                    url:'fas fa-user',
+                    lang:'fas fa-language',
+                    google:'fab fa-google',
+                    twitter:'twitter',
+                    facebook:'fab fa-facebook',
+                    datetimepicker:'fas fa-calendar-alt',
+                    date:'fas fa-calendar-alt',
+                    month:'fas fa-calendar-alt',
+                    datetime:'fas fa-calendar-alt',
+                    tel:'fas fa-phone',
+                    mail:'fas fa-envelope',
+                    email:'fas fa-envelope',
+                    password:'fas fa-key',
+                    number:'fas fa-list-ol',
+                    button:'fas fa-mouse-pointer'
+                }
+                for (var possibleId in autoIcons) {
+                    if (id.indexOf(possibleId) != -1 || 
+                       type.indexOf(possibleId) != -1
+                       ) return autoIcons[possibleId]
+                }
+                if (!ret) ret = 'fas fa-greater-than';
 				return ret
 			}
 		})
