@@ -65,10 +65,12 @@
 					{
 						id: 'i1',
 						type: 'text',
+                        pattern:'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
 						size: 10,
 						value: 'First item',
 						label: 'Id de l\'ambulance',
 						icon: 'fas fa-ambulance',
+                        minlength:4,
 						buttons: [{
 							icon: 'fas fa-running',
 							onclick: 'dosomething'
