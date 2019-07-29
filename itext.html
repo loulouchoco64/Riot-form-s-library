@@ -26,7 +26,7 @@
 					this.state.langs = ['']
 				}
                 if(this.props.type=='datetime') this.state.type='datetime-local'
-                else this.state.type=this.props.type
+                else this.state.type=this.props.field.type
 			},
 			btnLangColor(lang) {
 				return lang == this.state.currentLang ? 'btn-primary' : 'btn-danger'
