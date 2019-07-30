@@ -7,9 +7,10 @@
     
     <div each={lang in state.langs} class="input-group {lang==state.currentLang || !lang?'':'hide'}">
         <jaddon field={props.field} placement='left'></jaddon>
-        <input if={props.field.type!='textarea'} { ...props.field } type={state.type} class="form-control {props.field.class}" name={buildId(lang)} placeholder="text" size={props.field.size} value={defaultValue()} id={} onkeyup={change}>
         
-        <textarea  if={props.field.type=='textarea'} { ...props.field } class="form-control {props.field.class}" rows={props.field.rows} name={buildId(lang)} id={}>{defaultValue()}</textarea>
+        <input if={props.field.type!='textarea'} { ...props.field } aaatabindex={props.index} type={state.type} class="form-control {props.field.class}" defaultLang={state.defaultLang} lang={lang} baseId={props.field.id} name={buildId(lang)} aavalue={defaultValue()} id={}>
+        
+        <textarea  if={props.field.type=='textarea'} { ...props.field } aaatabindex={props.index}  class="form-control {props.field.class}" rows={props.field.rows || 8} defaultLang={state.defaultLang} lang={lang} baseId={props.field.id} name={buildId(lang)} id={}>{props.field.value}</textarea>
         
         <jaddon field={props.field} placement='right'></jaddon>
     </div>
@@ -20,6 +21,7 @@
 		export default {
 			onBeforeMount() {
 				this.state.currentLang = this.props.attr.langs[0]
+                this.state.defaultLang = this.props.attr.langs[0]
 				if (this.props.field.multilang) {
 					this.state.langs = this.props.attr.langs
 				} else {
@@ -36,14 +38,12 @@
 			},
             defaultValue() {
                if(this.state.currentLang == this.props.attr.langs[0]) return this.props.field.value
+                else return null
 			},            
 			selectLang(ev) {
 				this.state.currentLang = ev.target.attributes.idLang.value
 				this.update()
-			},
-            change(ev){
-               console.log(ev.target.validity.valid)
-            }
+			}
 		}
 	</script>
 </itext>
