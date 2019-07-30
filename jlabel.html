@@ -1,11 +1,14 @@
 <jlabel>
-	<label class="label" for={props.field.id}>{i18n(props.field.label)}</label>
-	<span class="inputRequired"></span>
-	<span class="inputFeedback"></span>
+	<label class="label" for={props.field.id}>{i18n(props.field.label)}</label> 
+    <span if={props.field.required} class="inputRequired">&nbsp;<i class="fas fa-asterisk fa-fw" aria-hidden="true"></i></span>
+	&nbsp;<span class="inputFeedback"></span>
     <style>
         .label
         {
             font-size:1.3rem;
+        }
+        .inputRequired{
+            color: red;
         }
     </style>
 </jlabel>

@@ -35,12 +35,13 @@
 						value: 'Eheh l\'ami quoi de neuf c\'est long tout ce tete sinon <h2>ca va? la fa</h2>mille? les amis? la santé? bonsoir enfin au revoir anticonstitutionnelement ;) bisous',
 						label: 'Lettre pour chirac',
 						multilang: true,
+                        required:true,
 						icon: 'fas fa-running',
 						tip: 'Il faut bien écrire vous avez affaire avec un président',
 						help: 'Help Please verify your info before',
 						buttons: [{
 							icon: 'fas fa-running',
-							onclick: 'dosomething'
+							onclick: 'translate'
 						}],
 
 					}, {
@@ -59,13 +60,13 @@
 						label: 'Zoom',
 						tip: 'select the right zoom',
 						help: 'select the right zoom',
-						onclick: 'dosomething'
+						onclick: 'alert("zoom")'
 					},
 
 					{
 						id: 'i1',
 						type: 'text',
-                        pattern:'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
+                        required:true,
 						size: 10,
 						value: 'First item',
 						label: 'Id de l\'ambulance',
@@ -86,11 +87,10 @@
 						type: 'row',
 						desc: [{
 								id: 'i11',
-								type: 'text',
+								type: 'email',
 								size: 10,
 								value: 'First item',
 								label: 'Id de l\'ambulance',
-								icon: 'fas fa-ambulance',
 								buttons: [{
 									icon: 'fas fa-running',
 									onclick: 'dosomething'
@@ -102,7 +102,8 @@
 							{
 								id: 'i12',
 								type: 'password',
-								size: 10,
+                                pattern:'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
+                                required:true,
 								value: 'Second item',
 								label: 'Mot de passe'
 							},
@@ -111,7 +112,8 @@
 					{
 						id: 'password',
 						type: 'password',
-						size: 10,
+						pattern:'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
+                        required:true,
 						value: 'Second item',
 						label: 'Mot de passe',
 						buttons: [{
@@ -260,7 +262,7 @@
 						label: 'Id de l\'ambulance',
 						buttons: [{
 							icon: 'fas fa-cogs',
-							onclick: 'dosomething'
+							onclick: 'translate'
 						}, {
 							title: 'test',
 							onclick: 'dosomething'
@@ -382,13 +384,23 @@
 			}
 			component.callType = function(type) {
 				let types = {
-					text: ['text,textarea', 'date', 'color', 'datetime', 'datetime-local', 'email', 'month', 'number', 'tel', 'time', 'url', 'week'],
+					text: ['text','textarea', 'date', 'color', 'datetime', 'datetime-local', 'email', 'month', 'number', 'tel', 'time', 'url', 'week'],
 					checkbox: ['checkbox', 'switch']
 				}
 				if (types.text.indexOf(type) > -1) return 'text'
 				if (types.checkbox.indexOf(type) > -1) return 'checkbox'
 				return type
 			}
+            component.translate=function(ev){
+                elt=ev.target.closest(".input-group").querySelector(".form-control")
+                defaultLang=elt.getAttribute('defaultLang')
+                lang=elt.getAttribute('lang')
+                eltFromId=elt.getAttribute('baseId')+'.'+defaultLang
+                console.log(eltFromId,defaultLang,lang)
+                eltFromValue=ev.target.closest(".form-group").querySelector('[name="'+eltFromId+'"]').value
+                //console.log(ev.target.closest(".form-group").querySelector('[name="'+eltFromId+'"]').getAttribute('name'))
+                elt.value='Transalion : ' + defaultLang + ' to ' + lang + ':' + eltFromValue
+            }
 		})
 
 

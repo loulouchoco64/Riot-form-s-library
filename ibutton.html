@@ -1,5 +1,5 @@
 <ibutton>
-	<button { ...props.field } type="button" class="btn btn-{props.field.color?props.field.color:'outline-primary'} {props.field.class}" style="text-transform: capitalize;" name={props.field.id} onclick={click} action={props.field.onclick} param={props.field.param} id={}>
+	<button { ...props.field } type="button" class="btn btn-{props.field.color?props.field.color:'outline-primary'} {props.field.class}" style="text-transform: capitalize;" name={props.field.id} onclick={this[props.field.onclick]} id={}>
         <jicon field={props.field}></jicon> {i18n(props.field.title)}
          <jtooltip tip={props.field.tip}></jtooltip>
     </button>
@@ -7,14 +7,14 @@
 		
 	<script>
 		export default {
-			click(ev) {
+			click(ev) {//not used
                 action=ev.target.getAttribute('action')
                 param=ev.target.getAttribute('param')
                 console.log(action,param,this)
                 if(typeof action == "function") action(event,param)
                 if(typeof this[action] == "function") this[action](event,param)
             },
-            dosomething(ev,param)
+            dosomething(ev,param) //test action
             {
                 alert('dosomething')
             }
