@@ -80,7 +80,7 @@
                 // If all else fails, return a generic catchall error
                 if(!isValid && !msg) msg= 'The value you entered for this field is invalid. ';
 
-                feedBackElt.innerHTML=(isValid?validFeedback:invalidFeedback) +' ' +msg
+                feedBackElt.innerHTML=(isValid?validFeedback:invalidFeedback) +' ' +this.i18n(msg)
                
                 
                 
