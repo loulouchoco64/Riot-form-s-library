@@ -51,6 +51,7 @@
                         class: 'btn-block btn-lg',
                         title: 'GO !',
                         onclick: 'dosomething',
+                        waitValid: true,
                         tip: 'Tip Please verify your info before',
                         help: 'Help Please verify your info before',
                     },
@@ -102,8 +103,8 @@
                             {
                                 id: 'i12',
                                 type: 'password',
-                                pattern: '(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
-                                required: true,
+                                //pattern:'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
+                                //required:true,
                                 value: 'Second item',
                                 label: 'Mot de passe'
                             },
@@ -112,8 +113,8 @@
                     {
                         id: 'password',
                         type: 'password',
-                        pattern: '(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
-                        required: true,
+                        //pattern:'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
+                        //required:true,
                         value: 'Second item',
                         label: 'Mot de passe',
                         buttons: [{
@@ -169,15 +170,15 @@
                     {
                         id: 'checkboxTest',
                         type: 'checkbox',
-                        label: 'Choix animal',
+                        label: 'Choix transport',
                         options: [{
-                                label: 'Oiseau',
-                                id: 'bird',
+                                label: 'Voiture',
+                                id: 'car',
                                 help: 'Il faut bien écrire vous avez affaire avec un président'
                             },
                             {
-                                label: 'Serpent',
-                                id: 'snake',
+                                label: 'Bus',
+                                id: 'bus',
                                 tip: 'ça pique'
                             }
                         ]
@@ -187,18 +188,26 @@
                         type: 'switch',
                         label: 'Choix animal',
                         options: [{
-                                checked: true,
-                                uncheckedLabel: 'Oiseau',
-                                checkedLabel: 'chien',
-                                uncheckedValue: 'bird',
-                                checkedValue: 'dog',
-                                id: 'bird'
+                                checkedLabel: 'vole',
+                                unCheckedLabel: 'tombe',
+                                checkedValue: 'fly',
+                                unCheckedValue: 'fall',
+                                value: 'fly',
+                                label: 'Oiseau',
+                                id: 'bird',
+                                help: 'Il faut bien écrire vous avez affaire avec un président'
+                            },
+                            {
+                                label: 'Serpent',
+                                id: 'snake',
+                                tip: 'ça pique'
+                            },
+                            {
+                                label: 'Serpent2',
+                                id: 'snake',
+                                tip: 'ça pique'
                             }
-                        ],
-                        ctrl: {
-                            checked: ["startEventEpoch", "endEventEpoch"],
-                            unchecked: []
-                        }
+                        ]
                     },
                     {
                         type: 'hr',
@@ -226,6 +235,7 @@
                         id: 'i10',
                         type: 'multiselect',
                         label: 'Musique',
+                        required: true,
                         tip: 'Tip Please verify your info before',
                         help: 'Help Please verify your info before',
                         options: [{
@@ -303,11 +313,22 @@
                             onclick: 'dosomething'
                         }],
                         multilang: false
+                    },
+                    {
+                        icon: 'fas fa-running',
+                        type: 'button',
+                        color: 'danger',
+                        class: 'btn-block btn-lg',
+                        title: 'GO 2 !',
+                        onclick: 'dosomething',
+                        waitValid: true,
+                        tip: 'Tip Please verify your info before',
+                        help: 'Help Please verify your info before',
                     }
+
                 ]
             }
         }
-
     </script>
 
     <div class="container">
@@ -409,15 +430,19 @@
 
 
 
-
         riot.compile().then(() => {
             riot.mount('formr', {
 
             })
         })
 
-    </script>
 
+        riot.compile().then(() => {
+            riot.mount('formr', {
+
+            })
+        })
+    </script>
 </body>
 
 </html>

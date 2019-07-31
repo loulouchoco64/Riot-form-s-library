@@ -1,5 +1,6 @@
 <formr>
-    <form name={props.id} onchange={validate} oninput={validate}>
+
+    <form name={props.id} onchange={validate}  oninput={validate} novalidate>
         <div each={ (field, i) in state.desc }>
             <div class="form-group" id="fgroup_{field.id || i}">
                 <div is={'i'+callType(field.type)} field={field} attr={state.attr} index={i}></div>
@@ -17,22 +18,25 @@
                 if (types.indexOf(type) > -1) return 'text'
                 else return type
             },
-            click() {
-                this.fields.push({
-                    type: 'text',
-                    size: 10,
-                    value: 'First item'
-                })
-                this.update()
-            },
-            validate(ev) {
-                var invalidFeedback = '<i class="text-danger fas fa-exclamation-triangle" aria-hidden="true"></i> '
-                var validFeedback = '<i class="text-success fas fa-check" aria-hidden="true"></i> '
-                var feedBackElt = ev.target.closest(".form-group").querySelector(".inputFeedback")
-                var field = ev.target
-                var validity = ev.target.validity
-                var isValid = validity.valid
-                var msg = ''
+			click() {
+				this.fields.push({
+					type: 'text',
+					size: 10,
+					value: 'First item'
+				})
+				this.update()
+			},
+            validate(ev){  
+            	var invalidFeedback='<i class="text-danger fas fa-times fa-fw mx-2" aria-hidden="true"></i>'
+                var invalidFeedbackMsg='<i class="text-danger fas fa-exclamation-triangle fa-fw mx-2" aria-hidden="true"></i>'
+                var validFeedback='<i class="text-success fas fa-check fa-fw mx-2" aria-hidden="true"></i>'
+                var feedBackElt=ev.target.closest(".form-group").querySelector(".inputFeedback")
+                var feedBackMsgElt=ev.target.closest(".form-group").querySelector(".inputFeedbackMsg")
+                var field=ev.target
+                var validity=ev.target.validity
+                var isValid=validity.valid
+                var msg=''
+
                 //console.log(ev.target.validity) 
                 //console.log(Object.keys(ev.target.validity))
 
@@ -98,13 +102,16 @@
             }
 
 
-
-
-
-
-        }
+             
+                
+                //enable buttons with attributes 'waitValid' if all fields in the form is valid
+                nbInvalidFields=ev.target.closest("form").querySelectorAll('.form-control:invalid')
+                //console.log('# input invalid',nbInvalidFields.length)
+                waitValid=ev.target.closest("form").querySelectorAll('[waitvalid]')
+                waitValid.forEach(function(e){ e.disabled = nbInvalidFields.length})
+            }
+		}
         
-
     </script>
     <style>
         /*-- redefine some bootstrap style --*/
@@ -127,13 +134,16 @@
         button:disabled {
             cursor: not-allowed;
         }
-
         button:focus,
         input:focus,
         textarea:focus {
             outline: none !important;
             border-color: #719ECE !important;
             box-shadow: 0 0 10px #719ECE !important;
+        }
+        
+        .fucfirst:first-letter {
+            text-transform: capitalize;
         }
 
     </style>

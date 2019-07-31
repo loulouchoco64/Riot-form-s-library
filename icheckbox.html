@@ -2,28 +2,37 @@
     <jlabel field={props.field}></jlabel>
     <jtooltip tip={props.field.tip}></jtooltip>
     <jhelp help={props.field.help}></jhelp>
+    <span class="inputFeedback"></span>
+    <small class="inputFeedbackMsg"></small>
     <div class="aaad-inline">
-        <template each={ (option) in props.field.options }>
-            <span>{option.uncheckedLabel}</span>
-            <label class={props.field.type=='switch' ?'fswitch':'fcheck'}>{i18n(option.label)}
-                <jtooltip tip={option.tip}></jtooltip>
-                <jhelp help={option.help}></jhelp>
-                <input { ...props.field } type={"checkbox"} checked={isChecked(option)} name={props.field.id} id={} onchange={change}>
-                <span class={props.field.type=='switch' ?'fswitchslider fswitchround':'fcheckmark'}></span>
-            </label>
-            <span>{option.checkedLabel}</span>
+        <template each={ option in props.field.options }>
+
+            <div class="row">
+                <div if={option.unCheckedLabel} class="fucfirst col-auto mb-2">{i18n(option.unCheckedLabel)}</div>
+                <div class="col-auto">
+                    <label class="ucfirst {props.field.type=='switch' ?'fswitch':'fcheck'}">
+                        <span if={!option.checkedLabel}> {i18n(option.label)}</span>
+                        <jtooltip if={!option.checkedLabel} tip={option.tip}></jtooltip>
+                        <jhelp if={!option.checkedLabel} help={option.help}></jhelp>
+                        <input { ...props.field } type={"checkbox"} checked={isChecked(option)} name={props.field.id} id={}>
+                        <span class={props.field.type=='switch' ?'fswitchslider fswitchround':'fcheckmark'}></span>
+                    </label>
+                </div>
+                <div if={option.checkedLabel} class="fucfirst col-auto mb-2">
+                    {i18n(option.checkedLabel)}
+                    <jtooltip if={!option.checkedLabel} tip={option.tip}></jtooltip>
+                    <jhelp if={option.checkedLabel} help={option.help}></jhelp>
+                </div>
+            </div>
         </template>
     </div>
-
     <script>
         export default {
-            onBeforeMount(){
-              //  this.state.options=this.props.field.options
-            },
-            isChecked(option){
-                
-               return option.checked
-    
+            isChecked(option) {
+                //console.log(option)
+                if (option.checkedValue === undefined) option.checkedValue = true
+                if (option.unCheckedValue === undefined) option.unCheckedValue = false
+                return (option.checked || option.value == option.checkedValue)
             }
         }
 
@@ -33,7 +42,8 @@
         .fswitch {
             display: block;
             position: relative;
-            padding-left: 2.9rem;
+
+            padding-left: 3.2rem;
             margin-bottom: 12px;
             cursor: pointer;
             -webkit-user-select: none;
@@ -56,8 +66,8 @@
             position: absolute;
             top: 3px;
             left: 0;
-            height: 1.25rem;
-            width: 2.5rem;
+            height: 1.5rem;
+            width: 2.75rem;
             background-color: #eee;
             -webkit-transition: .4s;
             transition: .4s;
@@ -79,8 +89,8 @@
         .fswitchslider:before {
             position: absolute;
             content: "";
-            height: 1.1rem;
-            width: 1.1rem;
+            height: 1.35rem;
+            width: 1.35rem;
             left: 0.1rem;
             bottom: 0.1rem;
             background-color: white;
@@ -100,7 +110,7 @@
 
         .fswitch input:focus~.fswitchslider {
             --box-shadow: 0 0 1px var(--navBarBg-backgroundColor);
-            box-shadow: 0 0 1px blue;
+            box-shadow: 0 0 4px blue;
         }
 
         .fswitch input:checked~.fswitchslider:before {
@@ -111,6 +121,7 @@
 
         .fswitch input[disabled]~.fswitchslider {
             opacity: 0.5;
+            cursor: not-allowed;
         }
 
 
@@ -192,7 +203,6 @@
             -ms-transform: rotate(45deg);
             transform: rotate(45deg);
         }
-
     </style>
 </icheckbox>
 

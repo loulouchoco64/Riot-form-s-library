@@ -1,5 +1,5 @@
 <ibutton>
-	<button { ...props.field } type="button" class="btn btn-{props.field.color?props.field.color:'outline-primary'} {props.field.class}" style="text-transform: capitalize;" name={props.field.id} onclick={this[props.field.onclick]} id={}>
+	<button { ...props.field } type="button" class="btn btn-{props.field.color?props.field.color:'outline-primary'} {props.field.class}" style="text-transform: capitalize;" name={props.field.id} onclick={this[props.field.onclick]} id={} disabled={props.field.waitValid || props.field.disabled}>
         <jicon field={props.field}></jicon> {i18n(props.field.title)}
          <jtooltip tip={props.field.tip}></jtooltip>
     </button>
