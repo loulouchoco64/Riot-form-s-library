@@ -2,20 +2,21 @@
     <jlabel field={props.field}></jlabel>
     <jtooltip tip={props.field.tip}></jtooltip>
     <template if={props.field.multilang} each={lang in props.attr.langs}>
-        <button type="button" class="btn {btnLangColor(lang)} btn-sm ml-1" style="text-transform: capitalize;" idLang={lang} onclick={selectLang}>{langName(lang)} <span class="inputFeedback"></span></button>
+        <button type="button" class="btn {btnLangColor(lang)} btn-sm ml-1" style="text-transform: capitalize;" idLang={lang} onclick={selectLang}>{langName(lang)} <span class="aaainputFeedback"></span></button>
     </template>
+    <span class="inputFeedback"></span>
+    <small class="inputFeedbackMsg"></small>
     
     <div each={lang in state.langs} class="input-group {lang==state.currentLang || !lang?'':'hide'}">
         <jaddon field={props.field} placement='left'></jaddon>
         
-        <input if={props.field.type!='textarea'} { ...props.field } aaatabindex={props.index} type={state.type} class="form-control {props.field.class}" defaultLang={state.defaultLang} lang={lang} baseId={props.field.id} name={buildId(lang)} aavalue={defaultValue()} id={}>
+        <input if={props.field.type!='textarea'} { ...props.field } aaatabindex={props.index} type={state.type} class="form-control {props.field.class}" defaultLang={state.defaultLang} lang={lang} baseId={props.field.id} name={buildId(lang)} value={props.field.value} id={}>
         
         <textarea  if={props.field.type=='textarea'} { ...props.field } aaatabindex={props.index}  class="form-control {props.field.class}" rows={props.field.rows || 8} defaultLang={state.defaultLang} lang={lang} baseId={props.field.id} name={buildId(lang)} id={}>{props.field.value}</textarea>
         
         <jaddon field={props.field} placement='right'></jaddon>
     </div>
     <jhelp help={props.field.help}></jhelp>
-
 
 	<script>
 		export default {
@@ -31,7 +32,7 @@
                 else this.state.type=this.props.field.type
 			},
 			btnLangColor(lang) {
-				return lang == this.state.currentLang ? 'btn-primary' : 'btn-danger'
+				return lang == this.state.currentLang ? 'btn-secondary' : 'btn-light'
 			},
 			buildId(lang) {
 				return this.props.field.multilang ? this.props.field.id + '.' + lang : this.props.field.id
