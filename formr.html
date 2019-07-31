@@ -35,6 +35,7 @@
                 var feedBackMsgElt=ev.target.closest(".form-group").querySelector(".inputFeedbackMsg")
                 var field=ev.target
                 var validity=ev.target.validity
+                if(!validity) return
                 var isValid=validity.valid
                 var msg=''
                 //console.log(ev.target.validity) 
