@@ -195,19 +195,47 @@
                                 value: 'fly',
                                 label: 'Oiseau',
                                 id: 'bird',
-                                help: 'Il faut bien écrire vous avez affaire avec un président'
-                            },
-                            {
-                                label: 'Serpent',
-                                id: 'snake',
-                                tip: 'ça pique'
-                            },
-                            {
-                                label: 'Serpent2',
-                                id: 'snake',
-                                tip: 'ça pique'
+                                ctrl: {
+                                    checked: ["flyDescription"],
+                                    unchecked: ["fallDescription"]
+                                }
                             }
+
                         ]
+                    },
+                    {
+                        type: 'textarea',
+                        id: "flyDescription",
+                        rows: 10,
+                        value: 'Un très beau vol que nous avons la, tout à fait aérodynamique cette chouette!',
+                        label: 'Description du vol',
+                        multilang: true,
+                        required: true,
+                        icon: 'fas fa-kiwi-bird',
+                        tip: 'Précisez l\'oiseau svp',
+                        help: 'Help Please verify your info before',
+                        buttons: [{
+                            icon: 'fas fa-running',
+                            onclick: 'translate'
+                        }],
+
+                    },
+                    {
+                        type: 'textarea',
+                        id: "fallDescription",
+                        rows: 10,
+                        value: 'Quelle chute c\'est fantastique l\'oiseau a littéralement EXPLOSé wow!',
+                        label: 'Description de la chute',
+                        multilang: true,
+                        required: true,
+                        icon: 'fas fa-bomb',
+                        tip: 'Précisez l\'oiseau svp',
+                        help: 'Help Please verify your info before',
+                        buttons: [{
+                            icon: 'fas fa-running',
+                            onclick: 'translate'
+                        }],
+
                     },
                     {
                         type: 'hr',

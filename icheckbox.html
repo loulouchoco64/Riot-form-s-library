@@ -14,7 +14,7 @@
                         <span if={!option.checkedLabel}> {i18n(option.label)}</span>
                         <jtooltip if={!option.checkedLabel} tip={option.tip}></jtooltip>
                         <jhelp if={!option.checkedLabel} help={option.help}></jhelp>
-                        <input { ...props.field } type={"checkbox"} checked={isChecked(option)} name={props.field.id} id={}>
+                        <input { ...props.field } type={"checkbox"} checked={isChecked(option)} name={props.field.id} id={} ctrlChecked={checkedToString(option)} ctrlUnchecked={uncheckedToString(option)}>
                         <span class={props.field.type=='switch' ?'fswitchslider fswitchround':'fcheckmark'}></span>
                     </label>
                 </div>
@@ -33,6 +33,27 @@
                 if (option.checkedValue === undefined) option.checkedValue = true
                 if (option.unCheckedValue === undefined) option.unCheckedValue = false
                 return (option.checked || option.value == option.checkedValue)
+            },
+            checkedToString(option) {
+                var str
+                if (!(option.ctrl && option.ctrl.checked))
+                    return false
+                else {
+                    str = option.ctrl.checked.join()
+                    return str
+                }
+
+            },
+            uncheckedToString(option) {
+                var str
+                if (!(option.ctrl && option.ctrl.unchecked))
+                    return false
+                else {
+                    str = option.ctrl.unchecked.join()
+                    return str
+                }
+
+
             }
         }
 
@@ -203,6 +224,7 @@
             -ms-transform: rotate(45deg);
             transform: rotate(45deg);
         }
+
     </style>
 </icheckbox>
 
