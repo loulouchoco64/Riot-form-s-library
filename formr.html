@@ -11,6 +11,8 @@
 			onBeforeMount() {
 				this.state.desc = window.fields[this.props.id].desc
 				this.state.attr = window.fields[this.props.id].attr
+                this.state.attr.id=this.props.id
+                
 			},
             callType(type){
                 let types=['textarea','date','color','datetime','datetime-local','email','month','number','tel','time','url','week']
