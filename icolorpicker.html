@@ -5,15 +5,18 @@
     <small class="inputFeedbackMsg"></small>
     <jhelp help={props.field.help}></jhelp>
     <div class="color-picker"></div>
-    <input type="hidden" name={props.field.id}>
+    <input type="hidden" name={props.field.id} value={props.field.value}>
 
     <script>
         export default {
             onMounted() {
+                //https://github.com/Simonwep/pickr
                 const pickr = Pickr.create({
                     el: '.color-picker',
                     theme: 'nano', // or 'monolith', or 'nano'
-
+                    //default:'rgba(239, 1, 5, 1)',
+                   // default:'#16D92A',
+                    
                     comparison: false,
 
                     swatches: [
@@ -59,6 +62,12 @@
                         cancel: 'Cancel' // Default for cancel button
                     }
                 })
+                
+                pickr.on('init', instance => {
+                        setColor=instance._root.root.closest(".form-group").querySelector("[type='hidden']").value
+                        pickr.setColor(setColor)
+                })
+                
                 pickr.on('save', (color, instance) => {
                     rgba = color.toRGBA().toString()
                     console.log('save', rgba, instance._root.root)
