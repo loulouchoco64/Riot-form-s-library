@@ -48,17 +48,22 @@
                             hsva: false,
                             cmyk: false,
                             input: true,
-                            clear: true,
-                            save: true
+                            clear: false,
+                            save: true,
+                            cancel: true
                         }
+                    },
+                    strings: {
+                        save: 'Select', // Default for save button
+                        clear: 'Clear', // Default for clear button
+                        cancel: 'Cancel' // Default for cancel button
                     }
                 })
                 pickr.on('save', (color, instance) => {
-                    rgba=color.toRGBA().toString()
-                    console.log('save', rgba,instance._root.root)
-                    instance._root.root.closest(".form-group").querySelector("[type='hidden']").value=rgba
-                    
-                })
+                    rgba = color.toRGBA().toString()
+                    console.log('save', rgba, instance._root.root)
+                    instance._root.root.closest(".form-group").querySelector("[type='hidden']").value = rgba
+                }).on('cancel', () => {pickr.hide()})
             }
         }
 
