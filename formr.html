@@ -1,21 +1,20 @@
 <formr>
-
     <form name={props.id} onchange={validate}  oninput={validate} novalidate>
         <div each={ (field, i) in state.desc }>
             <div class="form-group" id="fgroup_{field.id || i}">
                 <div is={'i'+callType(field.type)} field={field} attr={state.attr} index={i}></div>
             </div>
         </div>
-    </form>
-    <script>
-        export default {
-            onBeforeMount() {
-                this.state.desc = window.fields[this.props.id].desc
-                this.state.attr = window.fields[this.props.id].attr
-            },
-            callType(type) {
-                let types = ['textarea', 'date', 'color', 'datetime', 'datetime-local', 'email', 'month', 'number', 'tel', 'time', 'url', 'week']
-                if (types.indexOf(type) > -1) return 'text'
+    </form>    
+	<script>
+		export default {
+			onBeforeMount() {
+				this.state.desc = window.fields[this.props.id].desc
+				this.state.attr = window.fields[this.props.id].attr
+			},
+            callType(type){
+                let types=['textarea','date','color','datetime','datetime-local','email','month','number','tel','time','url','week']
+                if(types.indexOf(type) > -1) return 'text'
                 else return type
             },
 			click() {
@@ -36,73 +35,64 @@
                 var validity=ev.target.validity
                 var isValid=validity.valid
                 var msg=''
-
                 //console.log(ev.target.validity) 
                 //console.log(Object.keys(ev.target.validity))
-
+                
+                
                 switch (true) {
                     // Don't validate some
-                    case field.disabled || field.type === 'file':
+                    case field.disabled || field.type == 'file':
                         return
                         break
-                        // If field is required and empty
+                    // If field is required and empty
                     case validity.valueMissing:
-                        msg += 'Please fill out this field. '
+                        msg += 'Fill out this field. '
                         break
-                        // If not the right type
+                    // If not the right type
                     case validity.typeMismatch:
                         // Email
-                        if (field.type === 'email') msg += 'Please enter an email address. '
+                        if (field.type == 'email') msg += 'Enter an email address. '
                         // URL
-                        if (field.type === 'url') msg += 'Please enter a URL. '
+                        if (field.type == 'url') msg += 'Enter a URL. '
                         break
-                        // If too short
+                    // If too short
                     case validity.tooShort:
-                        msg += 'Please lengthen this text to ' + field.getAttribute('minLength') + ' characters or more. You are currently using ' + field.value.length + ' characters. '
+                        msg += 'Lengthen this text to ' + field.getAttribute('minLength') + ' characters or more. You are currently using ' + field.value.length + ' characters. '
                         break
-                        // If too long
+                    // If too long
                     case validity.tooLong:
-                        msg += 'Please shorten this text to no more than ' + field.getAttribute('maxLength') + ' characters. You are currently using ' + field.value.length + ' characters. '
+                        msg += 'Shorten this text to no more than ' + field.getAttribute('maxLength') + ' characters. You are currently using ' + field.value.length + ' characters. '
                         break
-                        // If number input isn't a number
+                    // If number input isn't a number
                     case validity.badInput:
-                        msg += 'Please enter a number. '
+                        msg += 'Enter a number. '
                         break
-                        // If a number value doesn't match the step interval
+                    // If a number value doesn't match the step interval
                     case validity.stepMismatch:
-                        msg += 'Please select a valid value. '
+                        msg += 'Select a valid value. '
                         break
                     case validity.rangeOverflow:
-                        msg += 'Please select a value that is no more than ' + field.getAttribute('max') + '. '
+                        msg += 'Select a value that is no more than ' + field.getAttribute('max') + '. '
                         break
-                        // If a number field is below the min
+                    // If a number field is below the min
                     case validity.rangeUnderflow:
-                        msg += 'Please select a value that is no less than ' + field.getAttribute('min') + '. '
+                        msg += 'Select a value that is no less than ' + field.getAttribute('min') + '. '
                         break
-                        // If pattern doesn't match
+                    // If pattern doesn't match
                     case validity.patternMismatch:
                         // If pattern info is included, return custom error
                         if (field.hasAttribute('title')) msg += field.getAttribute('title')
                         // Otherwise, generic error
-                        msg += 'Please match the requested format. '
+                        else msg += 'Match the requested format. '
                         break
-                        // If all else fails, return a generic catchall error
-                    case !isValid && !msg:
-                        msg = 'The value you entered for this field is invalid. '
-                        break
-
-
-
-
                 }
-                feedBackElt.innerHTML = (isValid ? validFeedback : invalidFeedback) + ' ' + this.i18n(msg)
-
-
-
-            }
-
-
-             
+                
+                // If all else fails, return a generic catchall error
+                if(!isValid && !msg) msg = 'The value you entered for this field is invalid. '
+                
+                
+                feedBackElt.innerHTML=(isValid?validFeedback:invalidFeedback)
+                feedBackMsgElt.innerHTML=isValid?'':invalidFeedbackMsg+ ' ' +this.i18n(msg)
                 
                 //enable buttons with attributes 'waitValid' if all fields in the form is valid
                 nbInvalidFields=ev.target.closest("form").querySelectorAll('.form-control:invalid')
@@ -110,41 +100,34 @@
                 waitValid=ev.target.closest("form").querySelectorAll('[waitvalid]')
                 waitValid.forEach(function(e){ e.disabled = nbInvalidFields.length})
             }
-		
+		}
+	</script>
+	<style>
+         /*-- redefine some bootstrap style --*/
+		.hide,
+		.form-inline .hide {
+			display: none;
+		}
+        .form-group
+        {
+            margin-bottom: 1.5rem; /*bottom margin after each field*/
+        }
         
-    </script>
-    <style>
-        /*-- redefine some bootstrap style --*/
-        .hide,
-        .form-inline .hide {
-            display: none;
-        }
 
-        .form-group {
-            margin-bottom: 1.5rem;
-            /*bottom margin after each field*/
-        }
-
-
-        label {
-            font-size: 1.1rem;
+        label
+        {
+            font-size:1.1rem;
             font-weight: 500;
         }
-
-        button:disabled {
-            cursor: not-allowed;
+        
+        button:disabled
+        {
+          cursor: not-allowed;
         }
-        button:focus,
-        input:focus,
-        textarea:focus {
-            outline: none !important;
-            border-color: #719ECE !important;
-            box-shadow: 0 0 10px #719ECE !important;
-        }
+        button:focus, input:focus, textarea:focus { outline: none !important; border-color: #719ECE!important; box-shadow: 0 0 10px #719ECE!important; }
         
         .fucfirst:first-letter {
             text-transform: capitalize;
         }
-
     </style>
 </formr>
