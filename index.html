@@ -234,7 +234,8 @@
                     },
                     {
                         id: 'i10',
-                        type: 'multiselect',
+                        type: 'select',
+                        multiple:true,
                         label: 'Musique',
                         required: true,
                         tip: 'Tip Please verify your info before',
@@ -353,7 +354,6 @@
     <script type="riot" src="irange.html"></script>
     <script type="riot" src="jaddon.html"></script>
     <script type="riot" src="iselect.html"></script>
-    <script type="riot" src="imultiselect.html"></script>
     <script type="riot" src="irow.html"></script>
     <script type="riot" src="ititle.html"></script>
     <script type="riot" src="jtooltip.html"></script>
@@ -429,13 +429,6 @@
         })
 
 
-
-
-        riot.compile().then(() => {
-            riot.mount('formr', {
-
-            })
-        })
 
 
         riot.compile().then(() => {
