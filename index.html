@@ -49,6 +49,43 @@
                         help: 'Help Please verify your info before',
                     },
                     {
+                        id: 'genre',
+                        type: 'select',
+                        label: 'Genre',
+                        value: 'girl',
+                        tip: 'Tip Please verify your info before',
+                        help: 'Help Please verify your info before',
+                        options: [{
+                                label: 'Garcon',
+                                value: 'boy'
+                            },
+                            {
+                                label: 'Fille',
+                                value: 'girl'
+                            }
+                        ]
+                    },
+                    {
+                        id: 'music',
+                        type: 'select',
+                        multiple: true,
+                        label: 'Musique',
+                        required: true,
+                        value: ['guitar'],
+                        tip: 'Tip Please verify your info before',
+                        help: 'Help Please verify your info before',
+                        options: [{
+                                label: 'Piano',
+                                value: 'piano'
+                            },
+                            {
+                                label: 'Guitare',
+                                value: 'guitar',
+                                aaaselected: true
+                            }
+                        ]
+                    },
+                    {
                         id: 'mycolor',
                         label: 'Couleur principale',
                         type: 'colorpicker',
@@ -254,40 +291,6 @@
                         help: 'Please verify your info before'
                     },
                     {
-                        id: 'i9',
-                        type: 'select',
-                        label: 'Genre',
-                        tip: 'Tip Please verify your info before',
-                        help: 'Help Please verify your info before',
-                        options: [{
-                                label: 'Garcon',
-                                value: 'boy'
-                            },
-                            {
-                                label: 'Fille',
-                                value: 'girl'
-                            }
-                        ]
-                    },
-                    {
-                        id: 'i10',
-                        type: 'select',
-                        multiple: true,
-                        label: 'Musique',
-                        required: true,
-                        tip: 'Tip Please verify your info before',
-                        help: 'Help Please verify your info before',
-                        options: [{
-                                label: 'Garcon',
-                                value: 'boy'
-                            },
-                            {
-                                label: 'Fille',
-                                value: 'girl'
-                            }
-                        ]
-                    },
-                    {
                         id: 'i18',
                         type: 'text',
                         size: 10,
@@ -482,16 +485,19 @@
                 switch (type) {
                     case 'checkbox':
                         field(data, input.name, input.value)
-                        //data[input.name] = input.value
+                        break
+                        case 'select-one': //this is a special type property of dom  : https://www.w3schools.com/jsref/prop_select_type.asp
+                        field(data, input.name, input.value)
+                        break
+                    case 'select-multiple':
+                        field(data, input.name, [...input.options].filter((x) => x.selected).map((x)=>x.value))
                         break
                     case 'radio':
-                        //if (input.checked) data[input.name] = input.value
-                        //if (!data[input.name]) data[input.name] = null
-                                            if (input.checked) field(data, input.name, input.value)
+                        if (input.checked) field(data, input.name, input.value)
                         if (!field(data, input.name)) field(data, input.name, null)
                         break
                     default:
-                        //data[input.name] = input.value
+                        //console.log(input.name, input.value, type, input)
                         field(data, input.name, input.value)
                 }
             })
@@ -499,29 +505,18 @@
 
             /*
 
-                        $('#' + formId).find('input:not([type=checkbox]):not([type=radio]), select, textarea').not('.fnoFormalize').each(function() {
-                            //console.log('Formalize field',$(this).attr('id'),$(this).attr('name'), $(this).val())
-                            field(data, $(this).attr('name'), $(this).val())
-                        })
-                        $('#' + formId).find('input[type=checkbox]').not('.fnoFormalize').each(function() {
+                    $('#' + formId).find('input[type=checkbox]').not('.fnoFormalize').each(function() {
                             if ($(this).prop("checked")) var val = $(this).data('checkedValue');
                             else var val = $(this).data('uncheckedValue')
                             field(data, $(this).attr('name'), val)
 
                         })
-                        $('#' + formId).find('input[type=radio]').not('.f_noFormalize').each(function() {
-                            var val = $(this).val()
-                            //if(val=="true") val=true;// because in html value=false or true is a string value
-                            //if(val=="false") val=false; //idem
-                            if ($(this).prop("checked")) field(data, $(this).attr('name'), val)
-                            else if (!field(data, $(this).attr('name'))) field(data, $(this).attr('name'), null)
-                        })
-                        return data
+                        
                         */
         }
 
 
-        function ffield(obj, fieldPath, value) {
+        function field(obj, fieldPath, value) {
             // split the field into tokens
             if (obj === undefined || fieldPath === undefined || obj === null) return
             var tokens = fieldPath.split('.');

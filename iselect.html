@@ -1,18 +1,26 @@
 <iselect>
-	<jlabel field={props.field}></jlabel>
-	<jtooltip tip={props.field.tip}></jtooltip>
+    <jlabel field={props.field}></jlabel>
+    <jtooltip tip={props.field.tip}></jtooltip>
     <span class="inputFeedback"></span>
     <small class="inputFeedbackMsg"></small>
-	<div class="input-group mb-3">
+    <div class="input-group mb-3">
         <jaddon field={props.field} placement='left'></jaddon>
-		<select { ...props.field } multiple={props.field.multiple} class="form-control {props.field.class}" name={props.field.id} id={}>
-			<template each={option in props.field.options}>
-				<option value={option.value}>
-					{i18n(option.label)}
-				</option>
-			</template>
-		</select>
+        <select { ...props.field } multiple={props.field.multiple} class="form-control {props.field.class}" name={props.field.id} id={}>
+            <template each={option in props.field.options}>
+                <option value={option.value} selected={isSelected(option)}>
+                    {i18n(option.label)}
+                </option>
+            </template>
+        </select>
         <jaddon field={props.field} placement='right'></jaddon>
-	</div>
+    </div>
     <jhelp help={props.field.help}></jhelp>
+    <script>
+        export default {
+            isSelected(option) {
+                //console.log(option)
+                return (option.selected || option.value == this.props.field.value || (Array.isArray(this.props.field.value) && this.props.field.value.indexOf(option.value)>-1) )
+            }
+        }
+    </script>
 </iselect>
