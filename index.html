@@ -191,6 +191,7 @@
                         id: 'radioTest',
                         type: 'radio',
                         label: 'Choix animal',
+                        value: 'dog',
                         options: [{
                                 label: 'chien',
                                 id: 'dog',
@@ -198,6 +199,7 @@
                             },
                             {
                                 label: 'chat',
+                                achecked: true,
                                 id: 'cat',
                                 help: 'Help Please verify your info before'
                             }
@@ -479,14 +481,18 @@
 
                 switch (type) {
                     case 'checkbox':
-                        data[input.name] = input.value
+                        field(data, input.name, input.value)
+                        //data[input.name] = input.value
                         break
                     case 'radio':
-                        if (input.checked) data[input.name] = input.value
-                        if (!data[input.name]) data[input.name] = null
+                        //if (input.checked) data[input.name] = input.value
+                        //if (!data[input.name]) data[input.name] = null
+                                            if (input.checked) field(data, input.name, input.value)
+                        if (!field(data, input.name)) field(data, input.name, null)
                         break
                     default:
-                        data[input.name] = input.value
+                        //data[input.name] = input.value
+                        field(data, input.name, input.value)
                 }
             })
             console.log(data)
@@ -512,6 +518,32 @@
                         })
                         return data
                         */
+        }
+
+
+        function ffield(obj, fieldPath, value) {
+            // split the field into tokens
+            if (obj === undefined || fieldPath === undefined || obj === null) return
+            var tokens = fieldPath.split('.');
+            // if there's more than one token, this field is an object
+            if (tokens.length > 1) {
+                var subObj = tokens[0];
+                // define the object
+                if (!obj[subObj]) obj[subObj] = {};
+                // call field again on the embedded object
+                var firstDot = fieldPath.indexOf('.');
+                return field(obj[subObj], fieldPath.substr(firstDot + 1), value);
+            } else {
+                var arr = fieldPath.split('[');
+                if (arr.length > 1) {
+                    if (!obj[arr[0]]) obj[arr[0]] = [];
+                    if (value !== undefined) obj[arr[0]].push(value)
+                    else return obj[arr[0]][arr[1].slice(0, -1)] //remove last char or arr[1] that must be a ']'
+                } else {
+                    if (value !== undefined) obj[fieldPath] = value; // no embedded objects, just fieldPath assignment
+                    else return obj[fieldPath]
+                }
+            }
         }
     </script>
 </body></html>
