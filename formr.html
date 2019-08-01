@@ -1,13 +1,18 @@
 <formr>
     <form name={props.id} onchange={validate}  oninput={validate} novalidate>
+        <button type="button" onclick={er}>Go</button>
         <div each={ (field, i) in state.desc }>
             <div class="form-group" id="fgroup_{field.id || i}">
-                <div is={'i'+callType(field.type)} field={field} attr={state.attr} index={i}></div>
+                <div is={'i'+callType(field.type)} field={checkField(field,i)} attr={state.attr} index={i}></div>
             </div>
         </div>
     </form>    
 	<script>
 		export default {
+            checkField(field,i){
+                field.id = field.id || 'ffield'+i
+                return field
+            },
 			onBeforeMount() {
 				this.state.desc = window.fields[this.props.id].desc
 				this.state.attr = window.fields[this.props.id].attr
@@ -102,7 +107,7 @@
                 //console.log('# input invalid',nbInvalidFields.length)
                 waitValid=ev.target.closest("form").querySelectorAll('[waitvalid]')
                 waitValid.forEach(function(e){ e.disabled = nbInvalidFields.length})
-            }
+            },er(){getFormValues('form1')}
 		}
 	</script>
 	<style>

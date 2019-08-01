@@ -6,7 +6,8 @@
     <jhelp help={props.field.help}></jhelp>
     <div id="texteditor"></div>
     <input type="hidden" name={props.field.id} value={props.field.value}>
-    <button type="button" onclick={doit}>do it</button>
+    <input id="x" value="Editor content goes here" type="hidden" name="content">
+    <trix-editor input="x"></trix-editor>
 
     <script>
         export default {

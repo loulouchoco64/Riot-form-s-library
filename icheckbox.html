@@ -14,7 +14,7 @@
                         <span if={!option.checkedLabel}> {i18n(option.label)}</span>
                         <jtooltip if={!option.checkedLabel} tip={option.tip}></jtooltip>
                         <jhelp if={!option.checkedLabel} help={option.help}></jhelp>
-                        <input { ...props.field } type={"checkbox"} checked={isChecked(option)} name={props.field.id} id={}>
+                        <input { ...props.field } type={"checkbox"} class="form-control" checked={isChecked(option)} name={props.field.id} id={}>
                         <span class={props.field.type=='switch' ?'fswitchslider fswitchround':'fcheckmark'}></span>
                     </label>
                 </div>
