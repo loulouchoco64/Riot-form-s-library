@@ -33,6 +33,7 @@
                 if (option.checkedValue === undefined) option.checkedValue = true
                 if (option.unCheckedValue === undefined) option.unCheckedValue = false
                 return (option.checked || option.value == option.checkedValue)
+                
             },
             checkedToString(option) {
                 var str
@@ -53,6 +54,9 @@
                     return str
                 }
 
+
+            },
+            ctrlRun() {
 
             }
         }

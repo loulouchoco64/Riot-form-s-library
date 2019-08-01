@@ -1,7 +1,7 @@
 <formr>
     <form name={props.id} onchange={validate} oninput={validate} novalidate>
         <div each={ (field, i) in state.desc }>
-            <div class="form-group" id="fgroup_{field.id || i}">
+            <div class="form-group" name="fgroup_{field.id || i}">
                 <div is={'i'+callType(field.type)} field={field} attr={state.attr} index={i}></div>
             </div>
         </div>
@@ -11,6 +11,9 @@
             onBeforeMount() {
                 this.state.desc = window.fields[this.props.id].desc
                 this.state.attr = window.fields[this.props.id].attr
+            },
+            onMounted(){
+              this.ctrlRun()  
             },
             callType(type) {
                 let types = ['textarea', 'date', 'color', 'datetime', 'datetime-local', 'email', 'month', 'number', 'tel', 'time', 'url', 'week']
@@ -26,8 +29,44 @@
                 this.update()
             },
             ctrlRun() {
-                
+                document.querySelectorAll("input[ctrlChecked][ctrlUnchecked]").forEach(function(elt) {
+                    elt.getAttribute("ctrlChecked").split(',').forEach(function(name) {
+                        //node = '[name=fgroup_' + name+']'
+                        name='fgroup_' + name
+                        node=document.getElementsByName(name)[0]
+                        if (elt.checked) {
+                            //animateCSS(node,'fadeInDown')
+                            //document.getElementsByName(name)[0].classList.add('animated','fadeInDown') //remove('hide')
+                            node.classList.add('fadeInDown')
+                        } else
+                            node.classList.add('fadeOutDown')
+                             //animateCSS(node,'fadeOutDown')
+                            //document.getElementsByName(name)[0].classList.add('animated','fadeOutDown') //add('hide')
+
+                    })
+                    elt.getAttribute("ctrlUnchecked").split(',').forEach(function(name) {
+                        //node = '[name=fgroup_' + name+']'
+                        name='fgroup_' + name
+                         node=document.getElementsByName(name)[0]
+                        if (elt.checked) {
+                            node.classList.add('fadeOutDown')
+                            //document.getElementsByName(name)[0].classList.add('animated','fadeOutDown') //add('hide')
+                            // animateCSS(node,'fadeOutDown')
+                        } else
+                            node.classList.add('fadeInDown')
+                             //animateCSS(node,'fadeInDown')
+                            //document.getElementsByName(name)[0].classList.add('animated','fadeInDown') //remove('hide') 
+
+                    })
+                })
+
+
+
+                /*ctrls.split(',').forEach(function(name) {
+                    document.getElementsByName(name)[0].classList.add('hide')
+                })*/
             },
+
             validate(ev) {
                 this.ctrlRun()
                 var invalidFeedback = '<i class="text-danger fas fa-times fa-fw mx-2" aria-hidden="true"></i>'
@@ -142,6 +181,8 @@
         .fucfirst:first-letter {
             text-transform: capitalize;
         }
+        
+        
 
     </style>
 </formr>
