@@ -55,8 +55,8 @@
                 if(validity.stepMismatch) msgs.push('invalid step')
                 if(validity.rangeOverflow) msgs.push('Select a value that is no more than ' + field.max)
                 if(validity.rangeUnderflow) msgs.push('Select a value that is no less than ' + field.min)
-                if(validity.patternMismatch && field.pattern) msgs.push(field.pattern)// If pattern info is included, return custom error
-                if(validity.patternMismatch && !field.pattern) msgs.push('Match the requested format')
+                if(validity.patternMismatch && field.getAttribute('patternInfo')) msgs.push(field.getAttribute('patternInfo'))// If pattern info is included, return custom error
+                if(validity.patternMismatch && !field.getAttribute('patternInfo')) msgs.push("Didn't the requested format")
                 let self=this
                 msgs.forEach(function(m){
                     msg+=invalidFeedbackMsg+self.i18n(m)+'. '

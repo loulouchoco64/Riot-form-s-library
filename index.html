@@ -186,10 +186,11 @@
                     {
                         id: 'password',
                         type: 'password',
-                        //pattern:'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
+                        pattern: '(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
+                        patternInfo: '8 characters, 1 upper, 1 number',
                         //required:true,
                         value: 'Second item',
-                        label: 'Mot de passe',
+                        label: 'Mot de passe secure',
                         buttons: [{
                             icon: 'fas fa-running',
                             onclick: 'dosomething'
@@ -254,7 +255,8 @@
                             {
                                 label: 'Bus',
                                 id: 'bus',
-                                tip: 'ça pique'
+                                tip: 'ça pique',
+                                value: true
                             }
                         ]
                     },
@@ -264,25 +266,63 @@
                         label: 'Choix animal',
                         options: [{
                                 checkedLabel: 'vole',
-                                unCheckedLabel: 'tombe',
+                                uncheckedLabel: 'tombe',
                                 checkedValue: 'fly',
-                                unCheckedValue: 'fall',
+                                uncheckedValue: 'fall',
                                 value: 'fly',
                                 label: 'Oiseau',
                                 id: 'bird',
-                                help: 'Il faut bien écrire vous avez affaire avec un président'
+                                help: 'Il faut bien écrire vous avez affaire avec un président',
+                                ctrl: {
+                                    checked: ["flyDescription"],
+                                    unchecked: ["fallDescription"]
+                                }
                             },
                             {
                                 label: 'Serpent',
                                 id: 'snake',
-                                tip: 'ça pique'
+                                tip: 'ça pique',
+                                checked: true,
                             },
                             {
                                 label: 'Serpent2',
                                 id: 'snake',
-                                tip: 'ça pique'
+                                tip: 'ça pique',
+                                value: 'yes'
                             }
                         ]
+                    },
+                    {
+                        type: 'textarea',
+                        id: "flyDescription",
+                        rows: 10,
+                        value: 'Un très beau vol que nous avons la, tout à fait aérodynamique cette chouette!',
+                        label: 'Description du vol',
+                        multilang: true,
+                        required: true,
+                        icon: 'fas fa-kiwi-bird',
+                        tip: 'Précisez l\'oiseau svp',
+                        help: 'Help Please verify your info before',
+                        buttons: [{
+                            icon: 'fas fa-running',
+                            onclick: 'translate'
+                        }],
+                    },
+                    {
+                        type: 'textarea',
+                        id: "fallDescription",
+                        rows: 10,
+                        value: 'Quelle chute c\'est fantastique l\'oiseau a littéralement EXPLOSé wow!',
+                        label: 'Description de la chute',
+                        multilang: true,
+                        required: true,
+                        icon: 'fas fa-bomb',
+                        tip: 'Précisez l\'oiseau svp',
+                        help: 'Help Please verify your info before',
+                        buttons: [{
+                            icon: 'fas fa-running',
+                            onclick: 'translate'
+                        }]
                     },
                     {
                         type: 'hr',
@@ -325,9 +365,6 @@
                         tip: 'Tip Please verify your info before',
                         help: 'Help Please verify your info before',
                     }
-
-
-
                 ]
             },
             form2: {
@@ -486,11 +523,11 @@
                     case 'checkbox':
                         field(data, input.name, input.value)
                         break
-                        case 'select-one': //this is a special type property of dom  : https://www.w3schools.com/jsref/prop_select_type.asp
+                    case 'select-one': //this is a special type property of dom  : https://www.w3schools.com/jsref/prop_select_type.asp
                         field(data, input.name, input.value)
                         break
                     case 'select-multiple':
-                        field(data, input.name, [...input.options].filter((x) => x.selected).map((x)=>x.value))
+                        field(data, input.name, [...input.options].filter((x) => x.selected).map((x) => x.value))
                         break
                     case 'radio':
                         if (input.checked) field(data, input.name, input.value)
