@@ -15,6 +15,7 @@
     <!-- Modern or es5 bundle -->
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.es5.min.js"></script>
+    
 
 
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
@@ -409,36 +410,58 @@
                     langs: ['fr', 'en']
                 },
                 desc: [{
-                        type: 'title',
-                        title: 'Bye !',
-                        icon: 'fas fa-radiation-alt'
+                        id: 'switchTest',
+                        type: 'switch',
+                        label: 'Choix animal',
+                        options: [{
+                                checkedLabel: 'vole',
+                                uncheckedLabel: 'tombe',
+                                checkedValue: 'fly',
+                                uncheckedValue: 'fall',
+                                value: 'fly',
+                                label: 'Oiseau',
+                                id: 'bird',
+                                help: 'Il faut bien écrire vous avez affaire avec un président',
+                                ctrl: {
+                                    checked: ["flyDescription"],
+                                    unchecked: ["fallDescription"]
+                                }
+                            }
+
+                        ]
                     },
                     {
-                        id: 'logon',
-                        type: 'text',
-                        size: 10,
-                        value: 'First item',
-                        label: 'Id de l\'ambulance',
-                        buttons: [{
-                            icon: 'fas fa-cogs',
-                            title: '',
-                            onclick: 'dosomething'
-                        }, {
-                            title: 'test',
-                            onclick: 'dosomething'
-                        }],
-                        multilang: false
-                    },
-                    {
-                        icon: 'fas fa-running',
-                        type: 'button',
-                        color: 'danger',
-                        class: 'btn-block btn-lg',
-                        title: 'GO 2 !',
-                        onclick: 'dosomething',
-                        waitValid: true,
-                        tip: 'Tip Please verify your info before',
+                        type: 'textarea',
+                        id: "flyDescription",
+                        rows: 10,
+                        value: 'Un très beau vol que nous avons la, tout à fait aérodynamique cette chouette!',
+                        label: 'Description du vol',
+                        multilang: true,
+                        required: true,
+                        icon: 'fas fa-kiwi-bird',
+                        tip: 'Précisez l\'oiseau svp',
                         help: 'Help Please verify your info before',
+                        buttons: [{
+                            icon: 'fas fa-running',
+                            onclick: 'translate'
+                        }],
+
+                    },
+                    {
+                        type: 'textarea',
+                        id: "fallDescription",
+                        rows: 10,
+                        value: 'Quelle chute c\'est fantastique l\'oiseau a littéralement EXPLOSé wow!',
+                        label: 'Description de la chute',
+                        multilang: true,
+                        required: true,
+                        icon: 'fas fa-bomb',
+                        tip: 'Précisez l\'oiseau svp',
+                        help: 'Help Please verify your info before',
+                        buttons: [{
+                            icon: 'fas fa-running',
+                            onclick: 'translate'
+                        }],
                     }
 
                 ]
@@ -447,7 +470,6 @@
     </script>
 
     <div class="container">
-        <formr id="form1"></formr>
         <formr id="form2"></formr>
     </div>
 
