@@ -290,6 +290,7 @@
                                 tip: 'ça pique',
                                 value: 'yes'
                             }
+
                         ]
                     },
                     {
@@ -302,6 +303,41 @@
                         required: true,
                         icon: 'fas fa-kiwi-bird',
                         tip: 'Précisez l\'oiseau svp',
+                        help: 'Help Please verify your info before',
+                        buttons: [{
+                            icon: 'fas fa-running',
+                            onclick: 'translate'
+                        }],
+
+                    },
+                    {
+                        type: 'textarea',
+                        id: "fallDescription",
+                        rows: 10,
+                        value: 'Quelle chute c\'est fantastique l\'oiseau a littéralement EXPLOSé wow!',
+                        label: 'Description de la chute',
+                        multilang: true,
+                        required: true,
+                        icon: 'fas fa-bomb',
+                        tip: 'Précisez l\'oiseau svp',
+                        help: 'Help Please verify your info before',
+                        buttons: [{
+                            icon: 'fas fa-running',
+                            onclick: 'translate'
+                        }],
+
+                    },
+                    {
+                        type: 'hr',
+                        icon: 'fas fa-plane',
+                        label: 'Take your plane',
+                        help: 'Please verify your info before'
+                    },
+                    {
+                        id: 'i9',
+                        type: 'select',
+                        label: 'Genre',
+                        tip: 'Tip Please verify your info before',
                         help: 'Help Please verify your info before',
                         buttons: [{
                             icon: 'fas fa-running',
