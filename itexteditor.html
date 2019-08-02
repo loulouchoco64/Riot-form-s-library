@@ -1,0 +1,34 @@
+<itexteditor>
+    <jlabel field={props.field}></jlabel>
+    <jtooltip tip={props.field.tip}></jtooltip>
+    <span class="inputFeedback"></span>
+    <small class="inputFeedbackMsg"></small>
+    <jhelp help={props.field.help}></jhelp>
+    <div id="texteditor"></div>
+    <input type="hidden" name={props.field.id} value={props.field.value}>
+    <input id="x" value="Editor content goes here" type="hidden" name="content">
+    <trix-editor input="x"></trix-editor>
+
+    <script>
+        export default {
+            onMounted() {
+                //https://quilljs.com/
+
+                var container = document.getElementById('texteditor');
+                var editor = new Quill(container, {
+                    modules: {
+                        toolbar: [
+                            [{
+                                header: [1, 2, false]
+                            }],
+                            ['bold', 'italic', 'underline'],
+                            ['image', 'code-block']
+                        ]
+                    },
+                    theme: 'snow'
+                });
+            }
+        }
+
+    </script>
+</itexteditor>

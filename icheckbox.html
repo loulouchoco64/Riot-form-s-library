@@ -8,13 +8,13 @@
         <template each={ option in props.field.options }>
 
             <div class="row">
-                <div if={option.unCheckedLabel} class="fucfirst col-auto mb-2">{i18n(option.unCheckedLabel)}</div>
+                <div if={option.uncheckedLabel} class="fucfirst col-auto mb-2">{i18n(option.uncheckedLabel)}</div>
                 <div class="col-auto">
                     <label class="ucfirst {props.field.type=='switch' ?'fswitch':'fcheck'}">
                         <span if={!option.checkedLabel}> {i18n(option.label)}</span>
                         <jtooltip if={!option.checkedLabel} tip={option.tip}></jtooltip>
                         <jhelp if={!option.checkedLabel} help={option.help}></jhelp>
-                        <input { ...props.field } type={"checkbox"} checked={isChecked(option)} name={props.field.id} id={} ctrlChecked={checkedToString(option)} ctrlUnchecked={uncheckedToString(option)}>
+                        <input { ...props.field } type={"checkbox"} class="form-control" checked={isChecked(option)} ctrlChecked={ctrlToString(option,'checked')} ctrlUnchecked={ctrlToString(option,'unchecked')} name={props.field.id} id={}>
                         <span class={props.field.type=='switch' ?'fswitchslider fswitchround':'fcheckmark'}></span>
                     </label>
                 </div>
@@ -31,32 +31,14 @@
             isChecked(option) {
                 //console.log(option)
                 if (option.checkedValue === undefined) option.checkedValue = true
-                if (option.unCheckedValue === undefined) option.unCheckedValue = false
+                if (option.uncheckedValue === undefined) option.uncheckedValue = false
                 return (option.checked || option.value == option.checkedValue)
             },
-            checkedToString(option) {
-                var str
-                if (!(option.ctrl && option.ctrl.checked))
-                    return false
-                else {
-                    str = option.ctrl.checked.join()
-                    return str
-                }
-
-            },
-            uncheckedToString(option) {
-                var str
-                if (!(option.ctrl && option.ctrl.unchecked))
-                    return false
-                else {
-                    str = option.ctrl.unchecked.join()
-                    return str
-                }
-
-
+            ctrlToString(option,which) {
+                if (option.ctrl && option.ctrl[which]) return option.ctrl[which].join()
+                else return false
             }
         }
-
     </script>
     <style>
         /* Customize the label (the fswitch) */
