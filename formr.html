@@ -19,6 +19,9 @@
                 this.state.attr.id = this.props.id
 
             },
+            onMounted(){
+                ctrlRun()
+            },
             callType(type) {
                 let types = ['textarea', 'date', 'color', 'datetime', 'datetime-local', 'email', 'month', 'number', 'tel', 'time', 'url', 'week']
                 if (types.indexOf(type) > -1) return 'text'
@@ -33,6 +36,8 @@
                 this.update()
             },
             validate(ev) {
+                ctrlRun()
+                
                 let invalidFeedback = '<i class="text-danger fas fa-times fa-fw mx-2" aria-hidden="true"></i>'
                 let invalidFeedbackMsg = '<i class="text-danger fas fa-exclamation-triangle fa-fw mx-2" aria-hidden="true"></i>'
                 let validFeedback = '<i class="text-success fas fa-check fa-fw mx-2" aria-hidden="true"></i>'
@@ -71,6 +76,36 @@
                 waitValid = ev.target.closest("form").querySelectorAll('[waitvalid]')
                 waitValid.forEach(function(e) {
                     e.disabled = nbInvalidFields.length
+                })
+            },ctrlRun() {
+                
+                document.querySelectorAll("input[ctrlChecked][ctrlUnchecked]").forEach(function(elt) {
+                    elt.getAttribute("ctrlChecked").split(',').forEach(function(name) {
+                        //node = '[name=fgroup_' + name+']'
+                        name='fgroup_' + name
+                        node=document.getElementsByName(name)[0]
+                        if (elt.checked) {
+                            //animateCSS(node,'fadeInDown')
+                            //document.getElementsByName(name)[0].classList.add('animated','fadeInDown') //remove('hide')
+                            node.classList.add('fadeInDown')
+                        } else
+                            node.classList.add('fadeOutDown')
+                             //animateCSS(node,'fadeOutDown')
+                            //document.getElementsByName(name)[0].classList.add('animated','fadeOutDown') //add('hide')
+                    })
+                    elt.getAttribute("ctrlUnchecked").split(',').forEach(function(name) {
+                        //node = '[name=fgroup_' + name+']'
+                        name='fgroup_' + name
+                         node=document.getElementsByName(name)[0]
+                        if (elt.checked) {
+                            node.classList.add('fadeOutDown')
+                            //document.getElementsByName(name)[0].classList.add('animated','fadeOutDown') //add('hide')
+                            // animateCSS(node,'fadeOutDown')
+                        } else
+                            node.classList.add('fadeInDown')
+                             //animateCSS(node,'fadeInDown')
+                            //document.getElementsByName(name)[0].classList.add('animated','fadeInDown') //remove('hide') 
+                    })
                 })
             },
             er() {
