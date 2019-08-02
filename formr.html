@@ -20,7 +20,7 @@
 
             },
             onMounted(){
-                this.ctrlRun()
+                this.ctrlRun(this.props.id)
             },
             callType(type) {
                 let types = ['textarea', 'date', 'color', 'datetime', 'datetime-local', 'email', 'month', 'number', 'tel', 'time', 'url', 'week']
@@ -36,7 +36,9 @@
                 this.update()
             },
             validate(ev) {
-                this.ctrlRun()
+                let targetForm=ev.target.closest("form")
+                
+                this.ctrlRun(targetForm.name)
                 
                 let invalidFeedback = '<i class="text-danger fas fa-times fa-fw mx-2" aria-hidden="true"></i>'
                 let invalidFeedbackMsg = '<i class="text-danger fas fa-exclamation-triangle fa-fw mx-2" aria-hidden="true"></i>'
@@ -72,8 +74,8 @@
                 feedBackMsgElt.innerHTML = isValid ? '' : msg
                 
                 //enable buttons with attributes 'waitValid' if all fields in the form is valid
-                nbInvalidFields = ev.target.closest("form").querySelectorAll('.form-control:invalid')
-                waitValid = ev.target.closest("form").querySelectorAll('[waitvalid]')
+                nbInvalidFields = targetForm.querySelectorAll('.form-control:invalid')
+                waitValid = targetForm.querySelectorAll('[waitvalid]')
                 waitValid.forEach(function(e) {
                     e.disabled = nbInvalidFields.length
                 })

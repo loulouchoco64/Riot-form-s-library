@@ -32,7 +32,8 @@
             form1: {
                 attr: {
                     lang: 'fr',
-                    langs: ['fr', 'en']
+                    langs: ['fr', 'en'],
+                    proposeTranslate:true
                 },
                 desc: [{
                         type: 'title',
@@ -97,6 +98,8 @@
                         id: 'mytextedit',
                         label: 'Texte principal',
                         type: 'texteditor',
+                        multilang:true,
+                        proposeTranslate:true,
                         tip: 'Tip Please verify your info before',
                         help: 'Help Please verify your info before',
                         value: 'Mon premier text'
@@ -111,12 +114,7 @@
                         required: true,
                         icon: 'fas fa-running',
                         tip: 'Il faut bien écrire vous avez affaire avec un président',
-                        help: 'Help Please verify your info before',
-                        buttons: [{
-                            icon: 'fas fa-running',
-                            onclick: 'translate'
-                        }],
-
+                        help: 'Help Please verify your info before'
                     }, {
                         icon: 'fas fa-running',
                         type: 'button',
@@ -323,11 +321,6 @@
                         icon: 'fas fa-kiwi-bird',
                         tip: 'Précisez l\'oiseau svp',
                         help: 'Help Please verify your info before',
-                        buttons: [{
-                            icon: 'fas fa-running',
-                            onclick: 'translate'
-                        }],
-
                     },
                     {
                         type: 'textarea',
@@ -340,10 +333,6 @@
                         icon: 'fas fa-bomb',
                         tip: 'Précisez l\'oiseau svp',
                         help: 'Help Please verify your info before',
-                        buttons: [{
-                            icon: 'fas fa-running',
-                            onclick: 'translate'
-                        }],
 
                     },
                     {
@@ -358,10 +347,6 @@
                         label: 'Genre',
                         tip: 'Tip Please verify your info before',
                         help: 'Help Please verify your info before',
-                        buttons: [{
-                            icon: 'fas fa-running',
-                            onclick: 'translate'
-                        }],
                     },
                     {
                         type: 'textarea',
@@ -373,11 +358,7 @@
                         required: true,
                         icon: 'fas fa-bomb',
                         tip: 'Précisez l\'oiseau svp',
-                        help: 'Help Please verify your info before',
-                        buttons: [{
-                            icon: 'fas fa-running',
-                            onclick: 'translate'
-                        }]
+                        help: 'Help Please verify your info before'
                     },
                     {
                         type: 'hr',
@@ -409,10 +390,7 @@
                         size: 10,
                         value: 'First item',
                         label: 'Id de l\'ambulance',
-                        buttons: [{
-                            icon: 'fas fa-cogs',
-                            onclick: 'translate'
-                        }, {
+                        buttons: [ {
                             title: 'test',
                             onclick: 'dosomething'
                         }],
@@ -477,6 +455,7 @@
     <script type="riot" src="ihr.html"></script>
     <script type="riot" src="ialert.html"></script>
     <script type="riot" src="itext.html"></script>
+    <script type="riot" src="ihidden.html"></script>
     <script type="riot" src="ipassword.html"></script>
     <script type="riot" src="ibutton.html"></script>
     <script type="riot" src="jlabel.html"></script>

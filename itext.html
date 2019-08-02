@@ -6,45 +6,53 @@
     </template>
     <span class="inputFeedback"></span>
     <small class="inputFeedbackMsg"></small>
-    
+
     <div each={lang in state.langs} class="input-group {lang==state.currentLang || !lang?'':'hide'}">
         <jaddon field={props.field} placement='left'></jaddon>
-        
-        <input if={props.field.type!='textarea'} { ...props.field } aaatabindex={props.index} type={state.type} class="form-control {props.field.class}" defaultLang={state.defaultLang} lang={lang} baseId={props.field.id} name={buildId(lang)} value={props.field.value} id={}>
-        
-        <textarea  if={props.field.type=='textarea'} { ...props.field } aaatabindex={props.index}  class="form-control {props.field.class}" rows={props.field.rows || 8} defaultLang={state.defaultLang} lang={lang} baseId={props.field.id} name={buildId(lang)} id={}>{props.field.value}</textarea>
-        
+
+        <input if={props.field.type!='textarea' } { ...props.field } aaatabindex={props.index} type={state.type} class="form-control {props.field.class}" defaultLang={state.defaultLang} lang={lang} baseId={props.field.id} name={buildId(lang)} value={props.field.value} id={}>
+
+        <textarea if={props.field.type=='textarea' } { ...props.field } aaatabindex={props.index} class="form-control {props.field.class}" rows={props.field.rows || 8} defaultLang={state.defaultLang} lang={lang} baseId={props.field.id} name={buildId(lang)} id={}>{props.field.value}</textarea>
+
+
+
+        <div if={props.field.multilang && props.attr.proposeTranslate && state.defaultLang !=lang } class="h-100 input-group-append">
+            <button type="button" class="btn btn-info" onclick={translate}><i class="fas fa-language"></i></button>
+        </div>
+
+
         <jaddon field={props.field} placement='right'></jaddon>
     </div>
     <jhelp help={props.field.help}></jhelp>
 
-	<script>
-		export default {
-			onBeforeMount() {
-				this.state.currentLang = this.props.attr.langs[0]
+    <script>
+        export default {
+            onBeforeMount() {
+                this.state.currentLang = this.props.attr.langs[0]
                 this.state.defaultLang = this.props.attr.langs[0]
-				if (this.props.field.multilang) {
-					this.state.langs = this.props.attr.langs
-				} else {
-					this.state.langs = ['']
-				}
-                if(this.props.type=='datetime') this.state.type='datetime-local'
-                else this.state.type=this.props.field.type
-			},
-			btnLangColor(lang) {
-				return lang == this.state.currentLang ? 'btn-secondary' : 'btn-light'
-			},
-			buildId(lang) {
-				return this.props.field.multilang ? this.props.field.id + '.' + lang : this.props.field.id
-			},
+                if (this.props.field.multilang) {
+                    this.state.langs = this.props.attr.langs
+                } else {
+                    this.state.langs = ['']
+                }
+                if (this.props.type == 'datetime') this.state.type = 'datetime-local'
+                else this.state.type = this.props.field.type
+            },
+            btnLangColor(lang) {
+                return lang == this.state.currentLang ? 'btn-secondary' : 'btn-light'
+            },
+            buildId(lang) {
+                return this.props.field.multilang ? this.props.field.id + '.' + lang : this.props.field.id
+            },
             defaultValue() {
-               if(this.state.currentLang == this.props.attr.langs[0]) return this.props.field.value
+                if (this.state.currentLang == this.props.attr.langs[0]) return this.props.field.value
                 else return null
-			},            
-			selectLang(ev) {
-				this.state.currentLang = ev.target.attributes.idLang.value
-				this.update()
-			}
-		}
-	</script>
+            },
+            selectLang(ev) {
+                this.state.currentLang = ev.target.attributes.idLang.value
+                this.update()
+            }
+        }
+
+    </script>
 </itext>
