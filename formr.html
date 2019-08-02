@@ -1,6 +1,7 @@
 <formr>
     <form name={props.id} onchange={validate} oninput={validate} novalidate>
         <button type="button" onclick={er}>Go</button>
+        <button type="button" onclick={seter}>set</button>
         <div each={ (field, i) in state.desc }>
             <div class="form-group" name="fgroup_{field.id || i}">
                 <div is={'i'+callType(field.type)} field={checkField(field,i)} attr={state.attr} index={i}></div>
@@ -78,9 +79,9 @@
                     e.disabled = nbInvalidFields.length
                 })
             },
-            ctrlRun() {
+            ctrlRun(formName) {
 
-                document.querySelectorAll("input[ctrlChecked][ctrlUnchecked]").forEach(function(elt) {
+                document.getElementsByName(formName)[0].querySelectorAll("input[ctrlChecked][ctrlUnchecked]").forEach(function(elt) {
                     elt.getAttribute("ctrlChecked").split(',').forEach(function(name) {
                         //node = '[name=fgroup_' + name+']'
                         name = 'fgroup_' + name
@@ -107,6 +108,9 @@
             },
             er() {
                 console.log(getFormValues('form1'))
+            },
+            seter() {
+                console.log(setFormValues('form1',data))
             }
         }
 
