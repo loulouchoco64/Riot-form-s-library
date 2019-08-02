@@ -14,7 +14,8 @@
                         <span if={!option.checkedLabel}> {i18n(option.label)}</span>
                         <jtooltip if={!option.checkedLabel} tip={option.tip}></jtooltip>
                         <jhelp if={!option.checkedLabel} help={option.help}></jhelp>
-                        <input { ...props.field } type={"checkbox"} class="form-control" checked={isChecked(option)} ctrlChecked={ctrlToString(option,'checked')} ctrlUnchecked={ctrlToString(option,'unchecked')} name={props.field.id} id={}>
+                        <input { ...props.field } type={"checkbox"} class="form-control" checkedValue={option.checkedValue}
+                                unCheckedValue={option.uncheckedValue} checked={isChecked(option)} ctrlChecked={ctrlToString(option,'checked')} ctrlUnchecked={ctrlToString(option,'unchecked')} name={buildId(option)} id={}>
                         <span class={props.field.type=='switch' ?'fswitchslider fswitchround':'fcheckmark'}></span>
                     </label>
                 </div>
@@ -29,15 +30,16 @@
     <script>
         export default {
             isChecked(option) {
-                //console.log(option)
-                if (option.checkedValue === undefined) option.checkedValue = true
-                if (option.uncheckedValue === undefined) option.uncheckedValue = false
-                return (option.checked || option.value == option.checkedValue)
+                return (option.checked || option.value == option.checkedValue || option.value == true)
             },
             ctrlToString(option,which) {
                 if (option.ctrl && option.ctrl[which]) return option.ctrl[which].join()
                 else return false
-            }
+            },
+            buildId(option) {
+                if(option.id) return this.props.field.id + '.' + option.id
+                else return this.props.field.id
+			}
         }
     </script>
     <style>
