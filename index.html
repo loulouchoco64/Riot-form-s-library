@@ -43,7 +43,7 @@
                     {
                         type: 'alert',
                         color: 'danger',
-                        message: "ceci est un message d'alerte",
+                        message: "Ceci est un message d'alerte",
                         icon: 'fas fa-exclamation-triangle',
                         tip: 'Tip Please verify your info before',
                         help: 'Help Please verify your info before',
@@ -286,11 +286,30 @@
                             },
                             {
                                 label: 'Serpent2',
-                                id: 'snake',
+                                id: 'snake2',
                                 tip: 'ça pique',
                                 value: 'yes'
                             }
 
+                        ]
+                    },
+                    {
+                        id: 'switchTestAlone',
+                        type: 'switch',
+                        label: 'Choix animal alone',
+                        options: [{
+                                checkedLabel: 'vole alone',
+                                uncheckedLabel: 'tombe alone',
+                                checkedValue: 'fly_lone',
+                                uncheckedValue: 'fall_alone',
+                                value: 'fly_alone',
+                                label: 'Oiseau alone',
+                                help: 'Il faut bien écrire vous avez affaire avec un président',
+                                ctrl: {
+                                    checked: ["flyDescription"],
+                                    unchecked: ["fallDescription"]
+                                }
+                            }
                         ]
                     },
                     {
@@ -548,16 +567,16 @@
         })
 
 
-
         function getFormValues(formId) {
             var data = {}
             inputs = document.getElementsByName(formId)[0].querySelectorAll('.form-control')
             inputs.forEach(function(input) {
-                type = input.type || input.tagName.toLowerCase
+                type = input.type // || input.tagName.toLowerCase
 
                 switch (type) {
                     case 'checkbox':
-                        field(data, input.name, input.value)
+                        if (input.checked) field(data, input.name, input.getAttribute('checkedValue') || true)
+                        else field(data, input.name, input.getAttribute('uncheckedValue') || false)
                         break
                     case 'select-one': //this is a special type property of dom  : https://www.w3schools.com/jsref/prop_select_type.asp
                         field(data, input.name, input.value)
@@ -569,23 +588,11 @@
                         if (input.checked) field(data, input.name, input.value)
                         if (!field(data, input.name)) field(data, input.name, null)
                         break
-                    default:
-                        //console.log(input.name, input.value, type, input)
+                    default: //text, password, hidden, email, tel, textarea...... all others
                         field(data, input.name, input.value)
                 }
             })
-            console.log(data)
-
-            /*
-
-                    $('#' + formId).find('input[type=checkbox]').not('.fnoFormalize').each(function() {
-                            if ($(this).prop("checked")) var val = $(this).data('checkedValue');
-                            else var val = $(this).data('uncheckedValue')
-                            field(data, $(this).attr('name'), val)
-
-                        })
-                        
-                        */
+            return(data)
         }
 
 
