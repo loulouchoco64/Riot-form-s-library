@@ -88,9 +88,9 @@
                         if (elt.checked) {
                             //animateCSS(node,'fadeInDown')
                             //document.getElementsByName(name)[0].classList.add('animated','fadeInDown') //remove('hide')
-                            node.classList.remove('out')
+                            node.classList.remove('hide')
                         } else
-                        node.classList.add('out')
+                        node.classList.add('hide')
                         //animateCSS(node,'fadeOutDown')
                         //document.getElementsByName(name)[0].classList.add('animated','fadeOutDown') //add('hide')
                     })
@@ -99,13 +99,9 @@
                         name = 'fgroup_' + name
                         node = document.getElementsByName(name)[0]
                         if (elt.checked) {
-                            node.classList.add('out')
-                            //document.getElementsByName(name)[0].classList.add('animated','fadeOutDown') //add('hide')
-                            // animateCSS(node,'fadeOutDown')
+                            node.classList.add('hide')
                         } else
-                        node.classList.remove('out')
-                        //animateCSS(node,'fadeInDown')
-                        //document.getElementsByName(name)[0].classList.add('animated','fadeInDown') //remove('hide') 
+                        node.classList.remove('hide')
                     })
                 })
             },
