@@ -461,10 +461,12 @@
         <formr id="form2"></formr>
     </div>
 
+    <compileme></compileme>
 
     <script src="https://kit.fontawesome.com/14194217cb.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/riot@4/riot+compiler.min.js"></script>
-    <script type="riot" src="formr.html"></script>
+    <script type="text/javascript" src="tag.js"></script>
+    <!--script type="riot" src="formr.html"></script>
     <script type="riot" src="ihr.html"></script>
     <script type="riot" src="ialert.html"></script>
     <script type="riot" src="itext.html"></script>
@@ -484,6 +486,7 @@
     <script type="riot" src="itexteditor.html"></script>
     <script type="riot" src="jtooltip.html"></script>
     <script type="riot" src="jhelp.html"></script>
+    <script type="riot" src="compileme.html"></script-->
     <script type="text/javascript">
         riot.install(function(component) {
             component.i18n = function(id) {
@@ -556,6 +559,7 @@
 
         riot.compile().then(() => {
             riot.mount('formr', {})
+            riot.mount('compileme', {})
         })
 
 
@@ -593,22 +597,26 @@
                         input.checked = (input.checkedValue == val && input.uncheckedValue != val) || val
                         break
                     case 'select-multiple':
-                        Array.prototype.forEach.call(input.options, function(opt){
-                            opt.selected=(val.indexOf(opt.value) > -1)
+                        Array.prototype.forEach.call(input.options, function(opt) {
+                            opt.selected = (val.indexOf(opt.value) > -1)
                         })
                         break
                     default: //radio, select-one' text, password, hidden, email, tel, textarea...... all others
                         input.value = val
-                        
+
                         //console.log(input.closest(".form-group").querySelector(".pcr-button").setColor(val,true))
-                        var setColorEvent = new CustomEvent('setColor_'+input.name,{detail:{color:val}})
-                        document.dispatchEvent(setColorEvent)                        
+                        var setColorEvent = new CustomEvent('setColor_' + input.name, {
+                            detail: {
+                                color: val
+                            }
+                        })
+                        document.dispatchEvent(setColorEvent)
                         //+color, editor, image
                 }
             })
             return data
         }
-        
+
         function field(obj, fieldPath, value) {
             // split the field into tokens
             if (obj === undefined || fieldPath === undefined || obj === null) return
