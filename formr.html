@@ -1,6 +1,7 @@
 <formr>
     <form name={props.id} onchange={validate} oninput={validate} novalidate>
         <button type="button" onclick={er}>Go</button>
+        <button type="button" onclick={seter}>set</button>
         <div each={ (field, i) in state.desc }>
             <div class="form-group" name="fgroup_{field.id || i}">
                 <div is={'i'+callType(field.type)} field={checkField(field,i)} attr={state.attr} index={i}></div>
@@ -17,7 +18,6 @@
                 this.state.desc = window.fields[this.props.id].desc
                 this.state.attr = window.fields[this.props.id].attr
                 this.state.attr.id = this.props.id
-
             },
             onMounted(){
                 this.ctrlRun(this.props.id)
@@ -78,35 +78,28 @@
                     e.disabled = nbInvalidFields.length
                 })
             },
-            ctrlRun() {
-
-                document.querySelectorAll("input[ctrlChecked][ctrlUnchecked]").forEach(function(elt) {
+            ctrlRun(formName) {
+                document.getElementsByName(formName)[0].querySelectorAll("input[ctrlChecked][ctrlUnchecked]").forEach(function(elt) {
                     elt.getAttribute("ctrlChecked").split(',').forEach(function(name) {
                         //node = '[name=fgroup_' + name+']'
                         name = 'fgroup_' + name
                         node = document.getElementsByName(name)[0]
-                        if (elt.checked) {
-                            //animateCSS(node,'fadeInDown')
-                            //document.getElementsByName(name)[0].classList.add('animated','fadeInDown') //remove('hide')
-                            node.classList.remove('hide')
-                        } else
-                        node.classList.add('hide')
-                        //animateCSS(node,'fadeOutDown')
-                        //document.getElementsByName(name)[0].classList.add('animated','fadeOutDown') //add('hide')
+                        if (elt.checked) node.classList.remove('hide')
+                        else node.classList.add('hide')
                     })
                     elt.getAttribute("ctrlUnchecked").split(',').forEach(function(name) {
-                        //node = '[name=fgroup_' + name+']'
                         name = 'fgroup_' + name
                         node = document.getElementsByName(name)[0]
-                        if (elt.checked) {
-                            node.classList.add('hide')
-                        } else
-                        node.classList.remove('hide')
+                        if (elt.checked) node.classList.add('hide')
+                        else node.classList.remove('hide')
                     })
                 })
             },
             er() {
                 console.log(getFormValues('form1'))
+            },
+            seter() {
+                console.log(setFormValues('form1',data))
             }
         }
 
