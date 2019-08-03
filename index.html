@@ -170,7 +170,8 @@
                         label: 'Zoom',
                         tip: 'select the right zoom',
                         help: 'select the right zoom',
-                        onclick: 'alert("zoom")'
+                        onchange: 'alert("zoom")',
+                        oninput: 'alert("zoom")',
                     },
 
                     {
@@ -465,8 +466,8 @@
 
     <script src="https://kit.fontawesome.com/14194217cb.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/riot@4/riot+compiler.min.js"></script>
-    <script type="text/javascript" src="tag.js"></script>
-    <!--script type="riot" src="formr.html"></script>
+    <!--script type="text/javascript" src="tag.js"></script-->
+    <script type="riot" src="formr.html"></script>
     <script type="riot" src="ihr.html"></script>
     <script type="riot" src="ialert.html"></script>
     <script type="riot" src="itext.html"></script>
@@ -486,7 +487,7 @@
     <script type="riot" src="itexteditor.html"></script>
     <script type="riot" src="jtooltip.html"></script>
     <script type="riot" src="jhelp.html"></script>
-    <script type="riot" src="compileme.html"></script-->
+    <script type="riot" src="compileme.html"></script>
     <script type="text/javascript">
         riot.install(function(component) {
             component.i18n = function(id) {
