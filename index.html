@@ -599,6 +599,10 @@
                         break
                     default: //radio, select-one' text, password, hidden, email, tel, textarea...... all others
                         input.value = val
+                        
+                        //console.log(input.closest(".form-group").querySelector(".pcr-button").setColor(val,true))
+                        var setColorEvent = new CustomEvent('setColor_'+input.name,{detail:{color:val}})
+                        document.dispatchEvent(setColorEvent)                        
                         //+color, editor, image
                 }
             })

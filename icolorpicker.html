@@ -4,7 +4,7 @@
     <span class="inputFeedback"></span>
     <small class="inputFeedbackMsg"></small>
     <jhelp help={props.field.help}></jhelp>
-    <div class="colorpicker"></div>
+    <div name={"colorpicker_" + props.field.id}></div>
     <input type="hidden" class="form-control" name={props.field.id} value={props.field.value}>
 
     <script>
@@ -12,7 +12,7 @@
             onMounted() {
                 //https://github.com/Simonwep/pickr
                 const pickr = Pickr.create({
-                    el: '.colorpicker',
+                    el: '[name="colorpicker_'+this.props.field.id+'"]',
                     theme: 'nano', // or 'monolith', or 'nano'
                     //default:'rgba(239, 1, 5, 1)',
                    // default:'#16D92A',
@@ -64,15 +64,19 @@
                 })
                 
                 pickr.on('init', instance => {
+                    console.log(instance)
                         setColor=instance._root.root.closest(".form-group").querySelector("[type='hidden']").value
                         pickr.setColor(setColor,true)
                 })
                 
                 pickr.on('save', (color, instance) => {
                     rgba = color.toRGBA().toString()
-                    //console.log('save', rgba, instance._root.root)
                     instance._root.root.closest(".form-group").querySelector("[type='hidden']").value = rgba
                 }).on('cancel', () => {pickr.hide()})
+                
+                document.addEventListener('setColor_'+this.props.field.id, function(ev){
+                    pickr.setColor(ev.detail.color,true)
+                })
             }
         }
 
