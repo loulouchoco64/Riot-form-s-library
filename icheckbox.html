@@ -6,12 +6,11 @@
     <small class="inputFeedbackMsg"></small>
     <div class="aaad-inline">
         <template each={ option in props.field.options }>
-
             <div class="row">
                 <div if={option.uncheckedLabel} class="fucfirst col-auto mb-2">{i18n(option.uncheckedLabel)}</div>
                 <div class="col-auto">
                     <label class="ucfirst {props.field.type=='switch' ?'fswitch':'fcheck'}">
-                        <span if={!option.checkedLabel}> {i18n(option.label)}</span>
+                        <span if={!option.checkedLabel} class="mr-1"> {i18n(option.label)}</span>
                         <jtooltip if={!option.checkedLabel} tip={option.tip}></jtooltip>
                         <jhelp if={!option.checkedLabel} help={option.help}></jhelp>
                         <input { ...props.field } type={"checkbox"} class="form-control" checkedValue={option.checkedValue}
@@ -21,7 +20,9 @@
                 </div>
                 <div if={option.checkedLabel} class="fucfirst col-auto mb-2">
                     {i18n(option.checkedLabel)}
-                    <jtooltip if={!option.checkedLabel} tip={option.tip}></jtooltip>
+                </div>
+                <div class="fucfirst col-auto mb-2">
+                    <jtooltip if={option.checkedLabel} tip={option.tip}></jtooltip>
                     <jhelp if={option.checkedLabel} help={option.help}></jhelp>
                 </div>
             </div>

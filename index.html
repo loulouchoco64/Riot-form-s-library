@@ -23,39 +23,55 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.js"></script>
 
+    <!-- Include Choices CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    <!-- Include Choices JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
 
 </head>
-
 
 <body>
     <script>
         var data = {
-            checkboxTest: {
-                car: true,
-                bus: false
+            checboxTransport: {
+                car: false,
+                bus: true
             },
+            emailInrRow: "emailInrRow changed",
             fallDescription: {
-                fr: "Quelle chute c'est fantastique l'oiseau a littéralement EXPLOSé wow!",
-                en: "Quelle chute c'est fantastique l'oiseau a littéralement EXPLOSé wow!"
+                fr: "fallDescription fr",
+                en: "fallDescription en"
             },
-            ffield8: "50",
+            mayrange: 10,
             flyDescription: {
-                fr: "Un très beau vol que nous avons la, tout à fait aérodynamique cette chouette!",
-                en: "Un très beau vol que nous avons la, tout à fait aérodynamique cette chouette!"
+                fr: "flyDescriptionf fr",
+                en: "flyDescription en"
             },
             genre: "boy",
-            i1: "First item",
-            i3: "Third item",
-            i9: "",
-            i11: "First item",
-            i12: "Second item",
-            i18: "First item",
-            i98: {
-                fr: "gggggggggg",
-                en: "Eheh l'ami quoi de neuf c'est long tout ce tete si…nfin au revoir anticonstitutionnelement ;) bisous"
-            }
-            
+            music: ["piano"],
+            mycolor: "blue",
+            mydate: "date changed",
+            mypassword: "mypassword changrd",
+            mytextarea: {
+                fr: "mytextarea fr",
+                en: "mytextarea en"
+            },
+            mytextedit: {
+                fr: "mytextedit fr",
+                en: "mytextedit en"
+            },
+            mytextwithbuttons: "mytextwithbuttons changed",
+            passwordInRow: "passwordInRow changed",
+            radioAnimal: "cat",
+            switchTest: {
+                bird: "fall",
+                snake: false,
+                elephant: true
+            },
+            switchTestAlone: "fall_alone"
         }
+
         var fields = {
             form1: {
                 attr: {
@@ -133,7 +149,7 @@
                         value: 'Mon premier text'
                     },
                     {
-                        id: 'i98',
+                        id: 'mytextarea',
                         type: 'textarea',
                         rows: 8,
                         value: 'Eheh l\'ami quoi de neuf c\'est long tout ce tete sinon <h2>ca va? la fa</h2>mille? les amis? la santé? bonsoir enfin au revoir anticonstitutionnelement ;) bisous',
@@ -143,28 +159,20 @@
                         icon: 'fas fa-running',
                         tip: 'Il faut bien écrire vous avez affaire avec un président',
                         help: 'Help Please verify your info before'
-                    }, {
-                        icon: 'fas fa-running',
-                        type: 'button',
-                        color: 'danger',
-                        class: 'btn-block btn-lg',
-                        title: 'GO !',
-                        onclick: 'dosomething',
-                        waitValid: true,
-                        tip: 'Tip Please verify your info before',
-                        help: 'Help Please verify your info before',
                     },
                     {
+                        id: 'mayrange',
                         icon: 'fas fa-running',
                         type: 'range',
                         label: 'Zoom',
                         tip: 'select the right zoom',
                         help: 'select the right zoom',
-                        onclick: 'alert("zoom")'
+                        onchange: 'alert("zoom")',
+                        oninput: 'alert("zoom")',
                     },
 
                     {
-                        id: 'i1',
+                        id: 'mytextwithbuttons',
                         type: 'text',
                         required: true,
                         size: 10,
@@ -183,10 +191,10 @@
                         help: 'Help Please verify your info before',
                     },
                     {
-                        id: 'i0',
+                        id: 'row0',
                         type: 'row',
                         desc: [{
-                                id: 'i11',
+                                id: 'emailInrRow',
                                 type: 'email',
                                 size: 10,
                                 value: 'First item',
@@ -200,7 +208,7 @@
                                 }]
                             },
                             {
-                                id: 'i12',
+                                id: 'passwordInRow',
                                 type: 'password',
                                 //pattern:'(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
                                 //required:true,
@@ -210,7 +218,7 @@
                         ]
                     },
                     {
-                        id: 'password',
+                        id: 'mypassword',
                         type: 'password',
                         pattern: '(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{8,}',
                         patternInfo: '8 characters, 1 upper, 1 number',
@@ -228,7 +236,7 @@
                         help: 'Help Please verify your info before',
                     },
                     {
-                        id: 'i3',
+                        id: 'mydate',
                         type: 'datetime',
                         size: 10,
                         value: 'Third item',
@@ -244,15 +252,7 @@
                         help: 'Help Please verify your info before',
                     },
                     {
-                        id: 'i4',
-                        type: 'button',
-                        size: 23,
-                        title: 'Fourth item',
-                        icon: 'fas fa-restroom',
-                        onclick: 'dosomething'
-                    },
-                    {
-                        id: 'radioTest',
+                        id: 'radioAnimal',
                         type: 'radio',
                         label: 'Choix animal',
                         value: 'dog',
@@ -270,7 +270,7 @@
                         ]
                     },
                     {
-                        id: 'checkboxTest',
+                        id: 'checboxTransport',
                         type: 'checkbox',
                         label: 'Choix transport',
                         options: [{
@@ -311,8 +311,8 @@
                                 checked: true,
                             },
                             {
-                                label: 'Serpent2',
-                                id: 'snake2',
+                                label: 'Elephant',
+                                id: 'elephant',
                                 tip: 'ça pique',
                                 value: 'yes'
                             }
@@ -326,6 +326,7 @@
                         options: [{
                             checkedLabel: 'vole alone',
                             uncheckedLabel: 'tombe alone',
+                            checkedValue: 'fly_alone',
                             checkedValue: 'fly_lone',
                             uncheckedValue: 'fall_alone',
                             value: 'fly_alone',
@@ -369,89 +370,49 @@
                         help: 'Please verify your info before'
                     },
                     {
-                        id: 'i9',
-                        type: 'select',
-                        label: 'Genre',
+                        icon: 'fas fa-running',
+                        type: 'button',
+                        color: 'danger',
+                        class: 'btn-block btn-lg',
+                        title: 'GO !',
+                        onclick: 'dosomething',
+                        waitValid: true,
                         tip: 'Tip Please verify your info before',
                         help: 'Help Please verify your info before',
                     },
                     {
-                        type: 'textarea',
-                        id: "fallDescription",
-                        rows: 10,
-                        value: 'Quelle chute c\'est fantastique l\'oiseau a littéralement EXPLOSé wow!',
-                        label: 'Description de la chute',
-                        multilang: true,
-                        required: true,
-                        icon: 'fas fa-bomb',
-                        tip: 'Précisez l\'oiseau svp',
-                        help: 'Help Please verify your info before'
-                    },
-                    {
-                        type: 'hr',
-                        icon: 'fas fa-plane',
-                        label: 'Take your plane',
-                        help: 'Please verify your info before'
-                    },
-                    {
-                        id: 'i18',
-                        type: 'text',
-                        size: 10,
-                        value: 'First item',
-                        label: 'Id de l\'ambulance',
-                        icon: 'fas fa-ambulance',
-                        buttons: [{
-                            icon: 'fas fa-cogs',
-                            onclick: 'dosomething'
-                        }, {
-                            title: 'Test',
-                            onclick: 'dosomething'
-                        }],
-                        multilang: false,
-                        tip: 'Tip Please verify your info before',
-                        help: 'Help Please verify your info before',
-                    },
-                    {
-                        id: 'logon',
-                        type: 'text',
-                        size: 10,
-                        value: 'First item',
-                        label: 'Id de l\'ambulance',
-                        buttons: [{
-                            title: 'test',
-                            onclick: 'dosomething'
-                        }],
-                        multilang: true,
-                        tip: 'Tip Please verify your info before',
-                        help: 'Help Please verify your info before',
+                        id: 'i4',
+                        type: 'button',
+                        size: 23,
+                        title: 'Fourth item',
+                        icon: 'fas fa-restroom',
+                        onclick: 'dosomething'
                     }
                 ]
             },
             form2: {
                 attr: {
                     lang: 'fr',
-                    langs: ['fr', 'en']
+                    langs: ['fr', 'en'],
+                    proposeTranslate: true
                 },
                 desc: [{
-                        id: 'switchTest',
+                        id: 'switchTestAlone',
                         type: 'switch',
-                        label: 'Choix animal',
+                        label: 'Choix animal alone',
                         options: [{
-                                checkedLabel: 'vole',
-                                uncheckedLabel: 'tombe',
-                                checkedValue: 'fly',
-                                uncheckedValue: 'fall',
-                                value: 'fly',
-                                label: 'Oiseau',
-                                id: 'bird',
-                                help: 'Il faut bien écrire vous avez affaire avec un président',
-                                ctrl: {
-                                    checked: ["flyDescription"],
-                                    unchecked: ["fallDescription"]
-                                }
+                            checkedLabel: 'vole alone',
+                            uncheckedLabel: 'tombe alone',
+                            checkedValue: 'fly_alone',
+                            uncheckedValue: 'fall_alone',
+                            value: 'fly_alone',
+                            label: 'Oiseau alone',
+                            help: 'Il faut bien écrire vous avez affaire avec un président',
+                            ctrl: {
+                                checked: ["flyDescription"],
+                                unchecked: ["fallDescription"]
                             }
-
-                        ]
+                        }]
                     },
                     {
                         type: 'textarea',
@@ -464,11 +425,6 @@
                         icon: 'fas fa-kiwi-bird',
                         tip: 'Précisez l\'oiseau svp',
                         help: 'Help Please verify your info before',
-                        buttons: [{
-                            icon: 'fas fa-running',
-                            onclick: 'translate'
-                        }],
-
                     },
                     {
                         type: 'textarea',
@@ -481,25 +437,22 @@
                         icon: 'fas fa-bomb',
                         tip: 'Précisez l\'oiseau svp',
                         help: 'Help Please verify your info before',
-                        buttons: [{
-                            icon: 'fas fa-running',
-                            onclick: 'translate'
-                        }],
                     }
-
                 ]
             }
         }
     </script>
 
     <div class="container">
-        <formr id="form2"></formr>
         <formr id="form1"></formr>
+        <formr id="form2"></formr>
     </div>
 
+    <compileme></compileme>
 
     <script src="https://kit.fontawesome.com/14194217cb.js"></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/riot@4/riot+compiler.min.js"></script>
+    <!--script type="text/javascript" src="tag.js"></script-->
     <script type="riot" src="formr.html"></script>
     <script type="riot" src="ihr.html"></script>
     <script type="riot" src="ialert.html"></script>
@@ -520,6 +473,7 @@
     <script type="riot" src="itexteditor.html"></script>
     <script type="riot" src="jtooltip.html"></script>
     <script type="riot" src="jhelp.html"></script>
+    <script type="riot" src="compileme.html"></script>
     <script type="text/javascript">
         riot.install(function(component) {
             component.i18n = function(id) {
@@ -592,6 +546,7 @@
 
         riot.compile().then(() => {
             riot.mount('formr', {})
+            //riot.mount('compileme', {})
         })
 
         function setFormValues(formId,data) {
@@ -605,30 +560,55 @@
             var data = {}
             inputs = document.getElementsByName(formId)[0].querySelectorAll('.form-control')
             inputs.forEach(function(input) {
-                type = input.type // || input.tagName.toLowerCase
-
+                type = input.type
                 switch (type) {
                     case 'checkbox':
                         if (input.checked) field(data, input.name, input.getAttribute('checkedValue') || true)
                         else field(data, input.name, input.getAttribute('uncheckedValue') || false)
                         break
-                    case 'select-one': //this is a special type property of dom  : https://www.w3schools.com/jsref/prop_select_type.asp
-                        field(data, input.name, input.value)
-                        break
-                    case 'select-multiple':
+                    case 'select-multiple': //this is a special type property of dom  : https://www.w3schools.com/jsref/prop_select_type.asp
                         field(data, input.name, [...input.options].filter((x) => x.selected).map((x) => x.value))
                         break
                     case 'radio':
                         if (input.checked) field(data, input.name, input.value)
                         if (!field(data, input.name)) field(data, input.name, null)
                         break
-                    default: //text, password, hidden, email, tel, textarea...... all others
+                    default: //text, select-one, password, hidden, email, tel, textarea...... all others
                         field(data, input.name, input.value)
                 }
             })
-            return (data)
+            return data
         }
 
+        function setFormValues(formId, data) {
+            inputs = document.getElementsByName(formId)[0].querySelectorAll('.form-control')
+            inputs.forEach(function(input) {
+                type = input.type
+                val = field(data, input.name)
+                switch (type) {
+                    case 'checkbox':
+                        input.checked = (input.checkedValue == val && input.uncheckedValue != val) || val
+                        break
+                    case 'select-multiple':
+                        Array.prototype.forEach.call(input.options, function(opt) {
+                            opt.selected = (val.indexOf(opt.value) > -1)
+                        })
+                        break
+                    default: //radio, select-one' text, password, hidden, email, tel, textarea...... all others
+                        input.value = val
+
+                        //console.log(input.closest(".form-group").querySelector(".pcr-button").setColor(val,true))
+                        var setColorEvent = new CustomEvent(formId + '_setColor_' + input.name, {
+                            detail: {
+                                color: val
+                            }
+                        })
+                        document.dispatchEvent(setColorEvent)
+                        //+color, editor, image
+                }
+            })
+            return data
+        }
 
         function field(obj, fieldPath, value) {
             // split the field into tokens
