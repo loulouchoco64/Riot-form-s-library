@@ -399,28 +399,26 @@
             form2: {
                 attr: {
                     lang: 'fr',
-                    langs: ['fr', 'en']
+                    langs: ['fr', 'en'],
+                    proposeTranslate: true
                 },
                 desc: [{
-                        id: 'switchTest',
+                        id: 'switchTestAlone',
                         type: 'switch',
-                        label: 'Choix animal',
+                        label: 'Choix animal alone',
                         options: [{
-                                checkedLabel: 'vole',
-                                uncheckedLabel: 'tombe',
-                                checkedValue: 'fly',
-                                uncheckedValue: 'fall',
-                                value: 'fly',
-                                label: 'Oiseau',
-                                id: 'bird',
-                                help: 'Il faut bien écrire vous avez affaire avec un président',
-                                ctrl: {
-                                    checked: ["flyDescription"],
-                                    unchecked: ["fallDescription"]
-                                }
+                            checkedLabel: 'vole alone',
+                            uncheckedLabel: 'tombe alone',
+                            checkedValue: 'fly_alone',
+                            uncheckedValue: 'fall_alone',
+                            value: 'fly_alone',
+                            label: 'Oiseau alone',
+                            help: 'Il faut bien écrire vous avez affaire avec un président',
+                            ctrl: {
+                                checked: ["flyDescription"],
+                                unchecked: ["fallDescription"]
                             }
-
-                        ]
+                        }]
                     },
                     {
                         type: 'textarea',
@@ -433,11 +431,6 @@
                         icon: 'fas fa-kiwi-bird',
                         tip: 'Précisez l\'oiseau svp',
                         help: 'Help Please verify your info before',
-                        buttons: [{
-                            icon: 'fas fa-running',
-                            onclick: 'translate'
-                        }],
-
                     },
                     {
                         type: 'textarea',
@@ -450,16 +443,10 @@
                         icon: 'fas fa-bomb',
                         tip: 'Précisez l\'oiseau svp',
                         help: 'Help Please verify your info before',
-                        buttons: [{
-                            icon: 'fas fa-running',
-                            onclick: 'translate'
-                        }],
                     }
-
                 ]
             }
         }
-
     </script>
 
     <div class="container">
@@ -611,7 +598,7 @@
                         input.value = val
 
                         //console.log(input.closest(".form-group").querySelector(".pcr-button").setColor(val,true))
-                        var setColorEvent = new CustomEvent(formId+'_setColor_' + input.name, {
+                        var setColorEvent = new CustomEvent(formId + '_setColor_' + input.name, {
                             detail: {
                                 color: val
                             }
@@ -647,8 +634,5 @@
                 }
             }
         }
-
     </script>
-</body>
-
-</html>
+</body></html>
