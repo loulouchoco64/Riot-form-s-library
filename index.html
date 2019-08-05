@@ -23,9 +23,13 @@
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.css">
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/trix/1.2.0/trix.js"></script>
 
+    <!-- Include Choices CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/choices.js/public/assets/styles/choices.min.css">
+    <!-- Include Choices JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/choices.js/public/assets/scripts/choices.min.js"></script>
+
 
 </head>
-
 
 <body>
     <script>
@@ -455,6 +459,7 @@
                 ]
             }
         }
+
     </script>
 
     <div class="container">
@@ -560,7 +565,7 @@
 
         riot.compile().then(() => {
             riot.mount('formr', {})
-            riot.mount('compileme', {})
+            //riot.mount('compileme', {})
         })
 
 
@@ -606,7 +611,7 @@
                         input.value = val
 
                         //console.log(input.closest(".form-group").querySelector(".pcr-button").setColor(val,true))
-                        var setColorEvent = new CustomEvent('setColor_' + input.name, {
+                        var setColorEvent = new CustomEvent(formId+'_setColor_' + input.name, {
                             detail: {
                                 color: val
                             }
@@ -642,5 +647,8 @@
                 }
             }
         }
+
     </script>
-</body></html>
+</body>
+
+</html>
