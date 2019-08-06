@@ -441,11 +441,12 @@
                 ]
             }
         }
+
     </script>
 
     <div class="container">
         <formr id="form1"></formr>
-        <formr id="form2"></formr>
+    
     </div>
 
     <compileme></compileme>
@@ -549,7 +550,7 @@
             //riot.mount('compileme', {})
         })
 
-        function setFormValues(formId,data) {
+        function setFormValues(formId, data) {
             inputs = document.getElementsByName(formId)[0].querySelectorAll('.form-control')
             inputs.forEach(function(input) {
                 input.value = field(data, input.name)
@@ -634,5 +635,8 @@
                 }
             }
         }
+
     </script>
-</body></html>
+</body>
+
+</html>
