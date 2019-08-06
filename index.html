@@ -287,39 +287,6 @@
                         ]
                     },
                     {
-                        id: 'switchTest',
-                        type: 'switch',
-                        label: 'Choix animal',
-                        options: [{
-                                checkedLabel: 'vole',
-                                uncheckedLabel: 'tombe',
-                                checkedValue: 'fly',
-                                uncheckedValue: 'fall',
-                                value: 'fly',
-                                label: 'Oiseau',
-                                id: 'bird',
-                                help: 'Il faut bien écrire vous avez affaire avec un président',
-                                ctrl: {
-                                    checked: ["flyDescription"],
-                                    unchecked: ["fallDescription"]
-                                }
-                            },
-                            {
-                                label: 'Serpent',
-                                id: 'snake',
-                                tip: 'ça pique',
-                                checked: true,
-                            },
-                            {
-                                label: 'Elephant',
-                                id: 'elephant',
-                                tip: 'ça pique',
-                                value: 'yes'
-                            }
-
-                        ]
-                    },
-                    {
                         id: 'switchTestAlone',
                         type: 'switch',
                         label: 'Choix animal alone',
@@ -327,9 +294,8 @@
                             checkedLabel: 'vole alone',
                             uncheckedLabel: 'tombe alone',
                             checkedValue: 'fly_alone',
-                            checkedValue: 'fly_lone',
                             uncheckedValue: 'fall_alone',
-                            value: 'fly_alone',
+                            value: 'fall_alone',
                             label: 'Oiseau alone',
                             help: 'Il faut bien écrire vous avez affaire avec un président',
                             ctrl: {
@@ -441,12 +407,11 @@
                 ]
             }
         }
-
     </script>
 
     <div class="container">
         <formr id="form1"></formr>
-    
+        <formr id="form2"></formr>
     </div>
 
     <compileme></compileme>
@@ -550,7 +515,7 @@
             //riot.mount('compileme', {})
         })
 
-        function setFormValues(formId, data) {
+        function setFormValues(formId,data) {
             inputs = document.getElementsByName(formId)[0].querySelectorAll('.form-control')
             inputs.forEach(function(input) {
                 input.value = field(data, input.name)
@@ -635,8 +600,5 @@
                 }
             }
         }
-
     </script>
-</body>
-
-</html>
+</body></html>
